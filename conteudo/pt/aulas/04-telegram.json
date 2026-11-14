@@ -59,7 +59,7 @@
           "icone": "enviar",
           "col": 3,
           "lin": 1,
-          "detalhe": "Pergunta ao Telegram \"tem mensagem nova?\" (<code>getUpdates</code>), com o token do seu bot."
+          "detalhe": "Pergunta ao Telegram \"tem mensagem nova?\" (no código, <code>getUpdates</code>), com o token do seu bot."
         },
         {
           "id": "caixa",
@@ -73,11 +73,11 @@
         {
           "id": "envia",
           "titulo": "Responde",
-          "sub": "sendMessage",
+          "sub": "envia",
           "icone": "chat",
           "col": 2,
           "lin": 2,
-          "detalhe": "O canal manda a resposta para o mesmo chat (<code>sendMessage</code>) e anota o número da mensagem para não atender duas vezes."
+          "detalhe": "O canal manda a resposta para o mesmo chat (no código, <code>sendMessage</code>) e anota o número da mensagem no arquivo <code>telegram.offset</code>, para não atender a mesma mensagem duas vezes."
         }
       ],
       "ligacoes": [
@@ -189,7 +189,7 @@
     {
       "tipo": "codigo",
       "titulo": "O token no .env",
-      "sub": "Troque o texto depois do = pelo token que o BotFather mandou.",
+      "sub": "Troque o texto depois do = pelo token que o BotFather mandou. Este comando cria o arquivo .env (se ele já existir, é substituído).",
       "blocos": [
         {
           "rot": "Terminal · gravar o token",

@@ -162,8 +162,8 @@
           "titulo": "O terminal",
           "sub": "Linux, Mac ou WSL",
           "texto": [
-            "O kit roda no terminal, com o Python 3 que já vem no Linux e no Mac (no Windows, use o WSL).",
-            "Não precisa instalar biblioteca nenhuma: só Python puro."
+            "O kit roda no terminal, com o Python 3 que já vem no Linux e no Mac. No Windows, use o WSL, que é um Linux dentro do Windows.",
+            "No kit, nada além do Python: nenhuma biblioteca para instalar."
           ]
         },
         {
@@ -171,15 +171,15 @@
           "sub": "a sua assinatura",
           "texto": [
             "O cérebro do agente é o Codex, da OpenAI, que usa a sua assinatura do ChatGPT. Não precisa de chave de API.",
-            "Instale com <code>npm i -g @openai/codex</code> e entre com <code>codex login</code>."
+            "Ele se instala pelo <code>npm</code>, que vem junto com o Node.js (baixe em nodejs.org). Depois: <code>npm i -g @openai/codex</code> e <code>codex login</code>, que abre o navegador para você entrar."
           ]
         },
         {
           "titulo": "O kit",
           "sub": "no GitHub",
           "texto": [
-            "Cada peça do agente é um arquivo, e cada aula é uma tag do git: <code>git checkout aula2</code>, <code>aula3</code>…",
-            "Você não digita o código: troca de aula e roda."
+            "Cada peça do agente é um arquivo. O kit fica no GitHub e você baixa com o <code>git</code>.",
+            "Cada aula é uma <b>tag</b>, um marcador de versão: <code>git checkout aula2</code> troca os arquivos da pasta para a versão da aula 2. Você não digita o código: troca de aula e roda."
           ]
         }
       ]

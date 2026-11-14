@@ -60,41 +60,58 @@
           "icone": "check",
           "col": 3,
           "lin": 1,
-          "detalhe": "Com exemplo, quem confere é o código: o esperado está no resultado? Sim ou não. Acerta sempre."
+          "detalhe": "Com exemplo, quem confere é o código: o esperado está no resultado? Sim ou não. Igual toda vez."
         },
         {
           "id": "juiz",
           "titulo": "Juiz",
-          "sub": "outro cérebro",
+          "sub": "cérebro julga",
           "icone": "cerebro",
           "col": 2,
           "lin": 2,
-          "detalhe": "Sem exemplo, um segundo cérebro julga, lendo o pedido, o resultado e o que as ferramentas devolveram. Ajuda, mas também erra."
+          "detalhe": "Sem exemplo, o cérebro é chamado de novo, agora como juiz: lê o pedido, o resultado e o que as ferramentas devolveram. Pode ser outro modelo, com <code>MODELO_JUIZ=gpt-6-sol</code>. Ajuda, mas varia."
         },
         {
-          "id": "aprovado",
-          "titulo": "Sucesso",
+          "id": "passou",
+          "titulo": "Passou?",
           "sub": "aprovado",
-          "icone": "alvo",
+          "icone": "portao",
           "col": 3,
           "lin": 2,
+          "detalhe": "Os dois caminhos terminam aqui: aprovado ou reprovado."
+        },
+        {
+          "id": "sucesso",
+          "titulo": "Sucesso",
+          "sub": "a resposta sai",
+          "icone": "alvo",
+          "col": 3,
+          "lin": 3,
           "detalhe": "Aprovado: a resposta sai, com <code>[resultado] sucesso na tentativa N</code>."
+        },
+        {
+          "id": "denovo",
+          "titulo": "Reprovado",
+          "sub": "tenta de novo",
+          "icone": "relogio",
+          "col": 2,
+          "lin": 3,
+          "detalhe": "O cérebro recebe um aviso de que foi reprovado, sem a resposta certa, e tenta de novo."
         },
         {
           "id": "cancela",
           "titulo": "Cancela",
-          "sub": "3 reprovações",
+          "sub": "na 3ª vez",
           "icone": "x",
           "col": 1,
-          "lin": 2,
+          "lin": 3,
           "detalhe": "Reprovado três vezes: <code>Cancelei: o verificador reprovou 3 vezes</code>. Melhor que entregar errado."
         }
       ],
       "ligacoes": [
         {
           "de": "cerebro",
-          "para": "exemplo",
-          "rot": "resultado"
+          "para": "exemplo"
         },
         {
           "de": "exemplo",
@@ -108,23 +125,31 @@
         },
         {
           "de": "exato",
-          "para": "aprovado",
-          "rot": "ok"
+          "para": "passou"
         },
         {
           "de": "juiz",
-          "para": "aprovado",
-          "rot": "ok"
+          "para": "passou"
         },
         {
-          "de": "juiz",
+          "de": "passou",
+          "para": "sucesso",
+          "rot": "sim"
+        },
+        {
+          "de": "passou",
+          "para": "denovo",
+          "rot": "não"
+        },
+        {
+          "de": "denovo",
           "para": "cerebro",
           "rot": "de novo"
         },
         {
-          "de": "juiz",
+          "de": "denovo",
           "para": "cancela",
-          "rot": "3ª vez"
+          "rot": "3ª"
         }
       ],
       "passos": [
@@ -143,11 +168,13 @@
           "acende": [
             "exemplo",
             "exato",
-            "aprovado"
+            "passou",
+            "sucesso"
           ],
           "ligar": [
             "exemplo>exato",
-            "exato>aprovado"
+            "exato>passou",
+            "passou>sucesso"
           ],
           "titulo": "Com exemplo: o código confere.",
           "texto": "\"A que horas é a reunião?\" com <code>--esperado \"15\"</code>: achou 15 na resposta, aprovado."
@@ -156,36 +183,38 @@
           "acende": [
             "exemplo",
             "juiz",
-            "aprovado"
+            "passou"
           ],
           "ligar": [
             "exemplo>juiz",
-            "juiz>aprovado"
+            "juiz>passou"
           ],
           "titulo": "Sem exemplo: o juiz.",
-          "texto": "Outro cérebro lê o pedido, o resultado e o que foi lido, e responde SIM ou NAO com o motivo."
+          "texto": "O cérebro, agora como juiz, lê o pedido, o resultado e o que foi lido, e responde SIM ou NAO com o motivo."
         },
         {
           "acende": [
-            "juiz",
+            "passou",
+            "denovo",
             "cerebro"
           ],
           "ligar": [
-            "juiz>cerebro"
+            "passou>denovo",
+            "denovo>cerebro"
           ],
           "titulo": "Reprovado: de novo.",
-          "texto": "O cérebro recebe um aviso de que foi reprovado (sem a resposta certa) e tenta de novo."
+          "texto": "Vale para o código e para o juiz: o cérebro recebe o aviso (sem a resposta certa) e tenta de novo."
         },
         {
           "acende": [
-            "juiz",
+            "denovo",
             "cancela"
           ],
           "ligar": [
-            "juiz>cancela"
+            "denovo>cancela"
           ],
           "titulo": "Três vezes: cancela.",
-          "texto": "Na terceira reprovação, o agente para e avisa. Isso também vale para o código: \"Acme\" nunca aparece, então cancela."
+          "texto": "Na terceira reprovação, o agente para e avisa. Foi o que aconteceu com o \"Acme\", que não existe no arquivo."
         }
       ]
     },
@@ -210,7 +239,7 @@
         "abas": [
           {
             "rot": "Aprovado (14/11/2026)",
-            "html": "<pre>[canal terminal] Leia notas.txt e diga a que horas é a reunião\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] aprovado · exato: achei \"15\" no resultado\n[resultado] sucesso na tentativa 1\nA reunião é às 15h.</pre>"
+            "html": "<pre>[canal terminal] Leia notas.txt e diga a que horas é a reunião\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] aprovado · exato: achei \"15\" no resultado\n[resultado] sucesso na tentativa 1\nA reunião é às 15h.</pre><p>A linha <code>[memória]</code> mostra quantos fatos você já guardou: quem fez a aula 7 vê 1 ou mais.</p>"
           },
           {
             "rot": "Cancelado (14/11/2026)",
@@ -257,7 +286,7 @@
         {
           "rot": "Terminal · o robô que confere",
           "icone": "terminal",
-          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho entrada\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\nprintf 'Leia notas.txt e diga só o horário da reunião.\\nesperado: 15h\\n' > entrada/hora.txt\nprintf 'Leia notas.txt e diga o telefone do fornecedor.\\nesperado: telefone:\\n' > entrada/telefone.txt\npython3 canal_pasta.py --uma-vez | grep -E \"canal|verificador|resultado|pasta\\]\"\ncat feito/hora.txt feito/telefone.txt"
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho entrada\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\nprintf 'Leia notas.txt e diga só o horário da reunião.\\nesperado: 15h\\n' > entrada/hora.txt\nprintf 'Leia notas.txt e diga o valor do contrato.\\nesperado: R$\\n' > entrada/valor.txt\npython3 canal_pasta.py --uma-vez | grep -E \"canal|verificador|resultado|pasta\\]\"\ncat feito/hora.txt feito/valor.txt"
         }
       ],
       "saida": {
@@ -265,7 +294,7 @@
         "abas": [
           {
             "rot": "Saída capturada (14/11/2026)",
-            "html": "<pre>[canal pasta hora.txt] Leia notas.txt e diga só o horário da reunião.\n[verificador] aprovado · exato: achei \"15h\" no resultado\n[resultado] sucesso na tentativa 1\n[pasta] feito/hora.txt gravado\n[canal pasta telefone.txt] Leia notas.txt e diga o telefone do fornecedor.\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[resultado] cancelado depois de 3 tentativas\n[pasta] feito/telefone.txt gravado\nPEDIDO: Leia notas.txt e diga só o horário da reunião.\nRESULTADO: 15h\nPEDIDO: Leia notas.txt e diga o telefone do fornecedor.\nRESULTADO: Cancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei \"telefone:\" no resultado</pre>"
+            "html": "<pre>[canal pasta hora.txt] Leia notas.txt e diga só o horário da reunião.\n[verificador] aprovado · exato: achei \"15h\" no resultado\n[resultado] sucesso na tentativa 1\n[pasta] feito/hora.txt gravado\n[canal pasta valor.txt] Leia notas.txt e diga o valor do contrato.\n[verificador] reprovado · exato: não achei \"R$\" no resultado\n[verificador] reprovado · exato: não achei \"R$\" no resultado\n[verificador] reprovado · exato: não achei \"R$\" no resultado\n[resultado] cancelado depois de 3 tentativas\n[pasta] feito/valor.txt gravado\nPEDIDO: Leia notas.txt e diga só o horário da reunião.\nRESULTADO: 15h\nPEDIDO: Leia notas.txt e diga o valor do contrato.\nRESULTADO: Cancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei \"R$\" no resultado</pre>"
           }
         ]
       }
@@ -309,7 +338,7 @@
           "id": "e2",
           "titulo": "E2 · Um pedido seu com exemplo",
           "min": "10 min",
-          "texto": "Crie um <code>.txt</code> em <code>entrada/</code> com um pedido seu e uma linha <code>esperado:</code> com uma palavra que a resposta certa tem de ter. Rode <code>python3 canal_pasta.py --uma-vez</code>.",
+          "texto": "Crie um <code>.txt</code> em <code>entrada/</code> com um pedido seu e uma linha <code>esperado:</code> com uma palavra que a resposta certa tem de ter. Rode <code>python3 canal_pasta.py --uma-vez</code>. Não use um pedido que cai numa receita (como \"adicione … na lista\"): aí o verificador nem roda.",
           "pronto": "o arquivo em <code>feito/</code> tem a resposta e a trilha mostra <code>[verificador] aprovado · exato: achei</code> com a sua palavra."
         }
       ]

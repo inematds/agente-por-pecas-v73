@@ -11,7 +11,7 @@
   "lado_card": {
     "rot": "Kit do curso",
     "t": "Uma peça por arquivo",
-    "texto": "O agente inteiro, com uma tag por aula (aula2 … aula8) e testes que rodam sem modelo.",
+    "texto": "O agente inteiro, com uma tag por aula (aula1 … aula8). Na main, testes que rodam sem modelo.",
     "link": "Abrir o kit no GitHub",
     "href": "https://github.com/inematds/agente-por-pecas-kit"
   },
@@ -20,7 +20,7 @@
   "inicio": {
     "kicker": "Curso · 8 aulas · uma peça por aula",
     "titulo": "Monte o seu agente peça por peça: ele atende no Telegram e só diz pronto depois de conferir",
-    "lead": "Você usa IA no chat, mas ela não recebe pedido sozinha, não faz a tarefa e não confere o que fez. Aqui você monta um agente de verdade, peça por peça: o canal por onde o pedido chega, a caixa que decide, o cérebro (o Codex da sua assinatura), as receitas e ferramentas que fazem, e o verificador que confere antes de dizer pronto.",
+    "lead": "Você usa IA no chat, mas ela não recebe pedido sozinha, não faz a tarefa e não confere o que fez; quando erra, você só descobre depois. Aqui você monta um agente peça por peça: o canal por onde o pedido chega, a caixa que decide, o cérebro (o Codex da sua assinatura), as receitas e ferramentas que fazem, e o verificador que confere antes de dizer pronto.",
     "cta": "Começar pela aula 1",
     "cta2": {
       "t": "Ver o kit no GitHub",
@@ -30,7 +30,7 @@
     "numeros": [
       {
         "v": "9",
-        "t": "peças, uma por arquivo"
+        "t": "peças no mapa do agente"
       },
       {
         "v": "4",
@@ -203,7 +203,7 @@
         "icone": "lista",
         "col": 3,
         "lin": 1,
-        "detalhe": "O passo a passo para o pedido exato, sem cérebro (é o RPA). Rápido, igual toda vez e de graça. Arquivos em <code>receitas/</code>."
+        "detalhe": "O passo a passo para o pedido exato, sem cérebro. É o que se chama RPA: um robô que segue passos fixos. Rápido, igual toda vez e de graça. Arquivos em <code>receitas/</code>."
       },
       {
         "id": "regras",

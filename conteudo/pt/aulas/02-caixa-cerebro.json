@@ -232,7 +232,7 @@
           "id": "e2",
           "titulo": "E2 · Outro cérebro",
           "min": "5 min",
-          "texto": "Rode o mesmo pedido com outro modelo do Codex, sem mexer no código: <code>MODELO=gpt-6-sol python3 canal_terminal.py \"Em uma frase: o que é um agente de IA?\"</code>.",
+          "texto": "Rode o mesmo pedido com outro modelo do Codex, sem mexer no código: <code>MODELO=gpt-6-sol python3 canal_terminal.py \"Em uma frase: o que é um agente de IA?\"</code>. Se esse modelo não estiver na sua assinatura, a saída diz que o Codex não respondeu: abra o <code>codex</code> e veja os modelos com <code>/model</code>.",
           "pronto": "a trilha mostra <code>[cérebro gpt-6-sol] respondeu</code>."
         }
       ]

@@ -5,7 +5,7 @@
   "titulo": "Memória e regras: o que ele lembra e o que ele não pode",
   "titulo_curto": "Memória e regras",
   "minutos": 18,
-  "lead": "Na aula 6, o Codex respondeu \"não posso divulgar uma senha\", mas a ferramenta já tinha lido o segredo. Pedir educadamente ao modelo não é regra. Nesta aula as regras vão para o código das ferramentas, e o agente ganha memória: o que você conta fica guardado para a próxima conversa.",
+  "lead": "Com o agente da aula 6, um pedido esperto faz a ferramenta ler a senha, e só depois o Codex diz \"não posso divulgar\". Pedir educadamente ao modelo não é regra. Nesta aula as regras vão para o código das ferramentas, e o agente ganha memória: o que você conta fica guardado para a próxima conversa.",
   "objetivo": "ver a ferramenta ler um segredo fora da pasta na aula 6, ver a mesma leitura barrada na aula 7 e um fato sobreviver numa conversa nova.",
   "competencias": [
     "travar-regra-no-codigo",
@@ -248,7 +248,7 @@
           "titulo": "No .env",
           "sub": "TELEGRAM_DONO",
           "texto": [
-            "Acrescente a linha <code>TELEGRAM_DONO=</code> com esse número no <code>.env</code>."
+            "Acrescente a linha <code>TELEGRAM_DONO=</code> com esse número no <code>.env</code>, usando <code>&gt;&gt;</code> (dois sinais): acrescenta sem apagar o token."
           ]
         },
         {
@@ -257,6 +257,18 @@
           "texto": [
             "Outra pessoa que falar com o bot recebe \"Este agente só atende o dono.\" e o pedido nem chega à caixa."
           ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Teste a trava sozinho",
+      "sub": "Primeiro com um número errado, de propósito: assim você vê a recusa sem precisar de outra pessoa.",
+      "blocos": [
+        {
+          "rot": "Exemplo · só o dono",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula7\necho \"TELEGRAM_DONO=123\" >> .env\npython3 canal_telegram.py"
         }
       ]
     },
@@ -277,14 +289,14 @@
           "titulo": "E2 · Um fato seu",
           "min": "8 min",
           "texto": "Na tag aula7, conte um fato seu (\"lembre que eu prefiro reunião de manhã\") e, em outro comando, pergunte sobre ele.",
-          "pronto": "o <code>memoria.json</code> tem o seu fato e a segunda resposta usa ele, com a trilha <code>[memória] 1 fato(s)</code>."
+          "pronto": "o <code>memoria.json</code> tem o seu fato e a segunda resposta usa ele; a trilha mostra <code>[memória]</code> com 1 fato ou mais (o Thor do bloco acima também conta)."
         },
         {
           "id": "e3",
           "titulo": "E3 · Só o dono",
           "min": "5 min",
-          "texto": "Grave <code>TELEGRAM_DONO</code> no <code>.env</code> e mande uma mensagem ao bot.",
-          "pronto": "o seu pedido é atendido; se outra pessoa mandar, o terminal mostra <code>[regras] não é o dono: não atendo</code>."
+          "texto": "Rode o bloco Só o dono, com o número errado 123, e mande uma mensagem ao bot (Ctrl+C para parar). Depois troque o 123 pelo número do seu chat: <code>nano .env</code>, troque, Ctrl+O e Enter para salvar, Ctrl+X para sair. Rode de novo e mande outra mensagem.",
+          "pronto": "com 123, o terminal mostra <code>[regras] não é o dono: não atendo</code> e o bot responde \"Este agente só atende o dono.\"; com o seu número, o bot responde o seu pedido."
         }
       ]
     },

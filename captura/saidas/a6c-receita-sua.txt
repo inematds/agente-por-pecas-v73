@@ -1,0 +1,4 @@
+[canal terminal] anote a tarefa pagar a luz
+[receita anotar-tarefa.txt] sem cérebro
+Tarefa anotada: pagar a luz
+pagar a luz

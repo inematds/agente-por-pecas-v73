@@ -79,7 +79,7 @@
           "icone": "terminal",
           "col": 3,
           "lin": 2,
-          "detalhe": "O cérebro devolve um pedido de ferramenta (<code>{\"ferramenta\": \"ler\", ...}</code>). Quem lê o arquivo é a caixa, e o que ela leu volta para o cérebro."
+          "detalhe": "O cérebro devolve um pedido de ferramenta, como \"use ler com notas.txt\". Quem lê o arquivo é a caixa, e o que ela leu volta para o cérebro."
         },
         {
           "id": "resposta",
@@ -251,6 +251,27 @@
       }
     },
     {
+      "tipo": "codigo",
+      "titulo": "Uma receita sua",
+      "sub": "Uma receita nova é um arquivo de três linhas. O printf grava o arquivo; depois é só pedir.",
+      "blocos": [
+        {
+          "rot": "Terminal · a sua receita",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula6\nprintf 'quando: anote a tarefa *\\nfaça: acrescentar tarefas.txt *\\nresponda: Tarefa anotada: *\\n' > receitas/anotar-tarefa.txt\npython3 canal_terminal.py \"anote a tarefa pagar a luz\"\ncat trabalho/tarefas.txt"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] anote a tarefa pagar a luz\n[receita anotar-tarefa.txt] sem cérebro\nTarefa anotada: pagar a luz\npagar a luz</pre>"
+          }
+        ]
+      }
+    },
+    {
       "tipo": "pratica",
       "titulo": "Prática: a sua receita",
       "sub": "Faça na ordem.",
@@ -266,8 +287,8 @@
           "id": "e2",
           "titulo": "E2 · Uma receita sua",
           "min": "10 min",
-          "texto": "Copie <code>receitas/anotar-na-lista.txt</code> para <code>receitas/anotar-tarefa.txt</code> e troque para <code>quando: anote a tarefa *</code>, <code>faça: acrescentar tarefas.txt *</code>, <code>responda: Tarefa anotada: *</code>. Rode <code>python3 canal_terminal.py \"anote a tarefa pagar a luz\"</code>.",
-          "pronto": "a saída mostra <code>[receita anotar-tarefa.txt] sem cérebro</code> e o arquivo <code>trabalho/tarefas.txt</code> tem a linha <code>pagar a luz</code>."
+          "texto": "Rode o bloco Uma receita sua. Depois crie outra do mesmo jeito, para um pedido exato seu (troque as três linhas do <code>printf</code> e o nome do arquivo).",
+          "pronto": "a saída mostra <code>[receita anotar-tarefa.txt] sem cérebro</code>, o <code>trabalho/tarefas.txt</code> tem <code>pagar a luz</code>, e o pedido da sua receita também sai com <code>sem cérebro</code>."
         }
       ]
     },
