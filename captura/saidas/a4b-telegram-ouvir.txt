@@ -1,0 +1,7 @@
+ouvindo o Telegram...
+(mensagem do chat <seu chat>)
+[telegram] boas-vindas enviadas
+(mensagem do chat <seu chat>)
+[canal telegram] oi
+[cérebro gpt-6-luna] respondeu
+[telegram] resposta enviada

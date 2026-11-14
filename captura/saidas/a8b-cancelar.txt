@@ -1,0 +1,16 @@
+[canal terminal] Leia notas.txt e diga o nome do fornecedor
+[caixa] nenhuma receita serve: chamo o cérebro
+[memória] 0 fato(s) · [regras] regras.md
+[ferramenta ler] {"nome": "notas.txt"} -> Reunião com o fornecedor na sexta às 15h. Levar o contrato.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+[verificador] reprovado · exato: não achei "Acme" no resultado
+[memória] 0 fato(s) · [regras] regras.md
+[ferramenta ler] {"nome": "notas.txt"} -> Reunião com o fornecedor na sexta às 15h. Levar o contrato.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+[verificador] reprovado · exato: não achei "Acme" no resultado
+[memória] 0 fato(s) · [regras] regras.md
+[ferramenta ler] {"nome": "notas.txt"} -> Reunião com o fornecedor na sexta às 15h. Levar o contrato.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+[verificador] reprovado · exato: não achei "Acme" no resultado
+[resultado] cancelado depois de 3 tentativas
+Cancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei "Acme" no resultado

@@ -1,0 +1,11 @@
+vigiando a pasta entrada/...
+[canal pasta 001-bom-dia.txt] Escreva uma frase curta de bom dia para a equipe.
+[cérebro gpt-6-luna] respondeu
+[pasta] feito/001-bom-dia.txt gravado
+[canal pasta 002-frutas.txt] Liste 3 frutas, uma por linha.
+[cérebro gpt-6-luna] respondeu
+[pasta] feito/002-frutas.txt gravado
+PEDIDO: Liste 3 frutas, uma por linha.
+RESULTADO: Maçã
+Banana
+Laranja

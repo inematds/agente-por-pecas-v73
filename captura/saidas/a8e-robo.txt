@@ -1,0 +1,14 @@
+[canal pasta hora.txt] Leia notas.txt e diga só o horário da reunião.
+[verificador] aprovado · exato: achei "15h" no resultado
+[resultado] sucesso na tentativa 1
+[pasta] feito/hora.txt gravado
+[canal pasta telefone.txt] Leia notas.txt e diga o telefone do fornecedor.
+[verificador] reprovado · exato: não achei "telefone:" no resultado
+[verificador] reprovado · exato: não achei "telefone:" no resultado
+[verificador] reprovado · exato: não achei "telefone:" no resultado
+[resultado] cancelado depois de 3 tentativas
+[pasta] feito/telefone.txt gravado
+PEDIDO: Leia notas.txt e diga só o horário da reunião.
+RESULTADO: 15h
+PEDIDO: Leia notas.txt e diga o telefone do fornecedor.
+RESULTADO: Cancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei "telefone:" no resultado

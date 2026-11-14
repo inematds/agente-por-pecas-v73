@@ -1,0 +1,9 @@
+[canal terminal] Adicione pão integral na lista
+[receita anotar-na-lista.txt] sem cérebro
+Anotei pão integral na lista.
+[canal terminal] adicione café na lista
+[receita anotar-na-lista.txt] sem cérebro
+Anotei café na lista.
+[canal terminal] O que tem na lista?
+[receita ver-a-lista.txt] sem cérebro
+Na lista: pão integral, café

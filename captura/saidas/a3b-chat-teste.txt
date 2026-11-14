@@ -1,0 +1,4 @@
+{'resposta': 'Oi, tudo bem?', 'trilha': ['[canal chat] Diga oi em 3 palavras', '[cérebro gpt-6-luna] respondeu']}
+chat no ar: http://127.0.0.1:<porta>/
+[canal chat] Diga oi em 3 palavras
+[cérebro gpt-6-luna] respondeu

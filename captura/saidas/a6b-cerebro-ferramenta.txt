@@ -1,0 +1,5 @@
+[canal terminal] Leia notas.txt e diga em uma frase o que tenho que levar
+[caixa] nenhuma receita serve: chamo o cérebro
+[ferramenta ler] {"nome": "notas.txt"} -> Reunião com o fornecedor na sexta às 15h. Levar o contrato.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+Você tem que levar o contrato para a reunião com o fornecedor na sexta às 15h.

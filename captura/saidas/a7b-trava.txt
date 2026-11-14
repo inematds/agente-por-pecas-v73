@@ -1,0 +1,3 @@
+barrado: fora da pasta de trabalho
+recusado: o dono não aprovou substituir
+versão antiga

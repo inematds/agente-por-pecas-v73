@@ -1,0 +1,8 @@
+[canal terminal] Leia notas.txt e diga o que tenho que levar, em inglês
+[caixa] nenhuma receita serve: chamo o cérebro
+[memória] 0 fato(s) · [regras] regras.md
+[ferramenta ler] {"nome": "notas.txt"} -> Reunião com o fornecedor na sexta às 15h. Levar o contrato.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+[verificador] aprovado · exato: achei "contract" no resultado
+[resultado] sucesso na tentativa 1
+Bring the contract.

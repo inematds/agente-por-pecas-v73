@@ -1,0 +1,3 @@
+[canal terminal] Em uma frase: o que é um agente de IA?
+[cérebro gpt-6-luna] respondeu
+Um agente de IA é um sistema que percebe informações, decide o que fazer e executa ações para atingir um objetivo.

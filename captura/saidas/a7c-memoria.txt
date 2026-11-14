@@ -1,0 +1,12 @@
+[canal terminal] Lembre que meu cachorro se chama Thor
+[caixa] nenhuma receita serve: chamo o cérebro
+[memória] 0 fato(s) · [regras] regras.md
+[ferramenta lembrar] {"fato": "O cachorro do dono se chama Thor."} -> guardado: O cachorro do dono se chama Thor.
+[cérebro gpt-6-luna] respondeu (2 rodada(s))
+
+["O cachorro do dono se chama Thor."]
+[canal terminal] Qual é o nome do meu cachorro?
+[caixa] nenhuma receita serve: chamo o cérebro
+[memória] 1 fato(s) · [regras] regras.md
+[cérebro gpt-6-luna] respondeu (1 rodada(s))
+Seu cachorro se chama Thor.
