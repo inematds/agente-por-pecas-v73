@@ -1,7 +1,7 @@
 {
   "slug": "objetivo",
   "num": 1,
-  "menu": "O mapa e o objetivo",
+  "menu": "Objetivo",
   "titulo": "O mapa do agente, e o objetivo do seu",
   "titulo_curto": "Mapa e objetivo",
   "minutos": 12,
@@ -13,6 +13,14 @@
     "escrever-objetivo"
   ],
   "pecas": [
+    "canal",
+    "caixa",
+    "receita",
+    "regras",
+    "cerebro",
+    "ferramentas",
+    "memoria",
+    "verificador",
     "resultado"
   ],
   "aprende": [

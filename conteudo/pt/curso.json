@@ -312,6 +312,12 @@
         "de": "receita",
         "para": "resultado",
         "volta": "dir"
+      },
+      {
+        "de": "regras",
+        "para": "ferramentas",
+        "rot": "trava",
+        "volta": "baixo"
       }
     ]
   },

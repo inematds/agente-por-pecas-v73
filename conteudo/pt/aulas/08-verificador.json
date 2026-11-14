@@ -1,7 +1,7 @@
 {
   "slug": "verificador",
   "num": 8,
-  "menu": "Verificador e loop",
+  "menu": "Verificador",
   "titulo": "Verificador e loop: só diz pronto depois de conferir",
   "titulo_curto": "Verificador e loop",
   "minutos": 20,
@@ -308,16 +308,14 @@
           "titulo": "O aviso não dá a resposta",
           "sub": "vazamento",
           "texto": [
-            "Numa versão anterior, o aviso de reprovação dizia \"não achei Acme\". Na tentativa seguinte, o modelo respondeu \"O nome do fornecedor é Acme\", inventado.",
-            "Por isso o aviso diz só que reprovou, nunca o esperado."
+            "Quando o aviso de reprovação dizia \"não achei Acme\", o modelo respondeu \"O fornecedor é Acme\", inventado. Por isso o aviso só diz que reprovou."
           ]
         },
         {
           "titulo": "O juiz precisa ver o que o agente viu",
           "sub": "evidência",
           "texto": [
-            "Sem o texto do arquivo e sem a memória, o juiz reprovava respostas certas (\"não há informação que confirme o nome Thor\").",
-            "Agora ele recebe o que as ferramentas devolveram e o que o agente sabia."
+            "Sem o texto do arquivo e sem a memória, o juiz reprovava respostas certas. Agora ele recebe o que as ferramentas devolveram e o que o agente sabia."
           ]
         }
       ]
@@ -338,8 +336,15 @@
           "id": "e2",
           "titulo": "E2 · Um pedido seu com exemplo",
           "min": "10 min",
-          "texto": "Crie um <code>.txt</code> em <code>entrada/</code> com um pedido seu e uma linha <code>esperado:</code> com uma palavra que a resposta certa tem de ter. Rode <code>python3 canal_pasta.py --uma-vez</code>. Não use um pedido que cai numa receita (como \"adicione … na lista\"): aí o verificador nem roda.",
+          "texto": "Adapte e rode: <code>cd ~/agente-por-pecas-kit && printf 'Leia notas.txt e diga o dia da reunião.\\nesperado: sexta\\n' &gt; entrada/dia.txt && python3 canal_pasta.py --uma-vez</code>. Depois troque o pedido e a palavra do <code>esperado:</code> por um pedido seu. Não use um pedido que cai numa receita (como \"adicione … na lista\"): aí o verificador nem roda.",
           "pronto": "o arquivo em <code>feito/</code> tem a resposta e a trilha mostra <code>[verificador] aprovado · exato: achei</code> com a sua palavra."
+        },
+        {
+          "id": "e3",
+          "titulo": "E3 · Pelo Telegram",
+          "min": "5 min",
+          "texto": "Na tag aula8, rode <code>python3 canal_telegram.py --uma</code> e mande um pedido ao bot. Pelo Telegram não há linha <code>esperado:</code>, então quem confere é o juiz.",
+          "pronto": "o terminal mostra uma linha <code>[verificador]</code> com <code>juiz</code> e a resposta chega no seu Telegram (ou um \"Cancelei\", se o juiz reprovar 3 vezes)."
         }
       ]
     },

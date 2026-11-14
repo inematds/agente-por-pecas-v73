@@ -172,10 +172,16 @@ def sec_fluxo(s, ui, prefixo="", acende=None, estreia=None):
             f'<div class="fx-grade" style="--cols:{cols}">{"".join(nos)}</div></div>{passos}{det}</div>')
 
 
+CURSO_MAPA = set()  # ids do mapa (definido em main)
+
+
 def estreias(aulas):
     """Em que aula cada peça do mapa aparece pela primeira vez."""
     e = {}
+    total = len(CURSO_MAPA)
     for a in aulas:
+        if total and len(set(a.get("pecas", []))) >= total:   # aula que acende o mapa inteiro (a visão geral) não é a estreia de nenhuma peça
+            continue
         for pc in a.get("pecas", []):
             e.setdefault(pc, a)
     return e
@@ -781,6 +787,8 @@ def main():
     base = RAIZ / "conteudo" / args.lang
     curso = json.loads((base / "curso.json").read_text())
     ui = curso["ui"]
+    global CURSO_MAPA
+    CURSO_MAPA = {n["id"] for n in curso.get("mapa", {}).get("nos", [])}
     aulas = [json.loads(f.read_text()) for f in sorted((base / "aulas").glob("*.json"))]
     for f in sorted((RAIZ / "conteudo" / "pt" / "aulas").glob("*.json")):  # 7.14.19: simterm usa comandos do PT
         x = json.loads(f.read_text()); PT_AULAS[x["slug"]] = x

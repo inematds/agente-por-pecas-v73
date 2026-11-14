@@ -47,7 +47,7 @@
         var offy = Math.max(12, Math.min(26, (parseFloat(getComputedStyle(grade).rowGap) || 30) * 0.55));
         var cy = v > 0 ? Math.max(q1.y, q2.y) + offy : Math.min(q1.y, q2.y) - offy;
         d = "M" + q1.x + " " + q1.y + " C" + q1.x + " " + cy + " " + q2.x + " " + cy + " " + q2.x + " " + q2.y;
-        meio = { x: (q1.x + q2.x) / 2, y: cy - v * offy * 0.25 };
+        meio = { x: q1.x + (q2.x - q1.x) * 0.22, y: cy - v * offy * 0.35 };   // rótulo perto da saída: no meio cairia sobre outra seta
       } else if (l.volta) {                    // volta: curva para o lado, para não cobrir a ida
         var lado = l.volta === "esq" ? -1 : 1, sobe = bc.y < ac.y;
         // sai e chega fora do meio do lado (onde as setas retas encostam) e curva até ~45% do vão entre colunas

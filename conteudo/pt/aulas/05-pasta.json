@@ -1,7 +1,7 @@
 {
   "slug": "pasta",
   "num": 5,
-  "menu": "Canal pasta",
+  "menu": "Pasta",
   "titulo": "Canal pasta: o robô que trabalha sem conversa",
   "titulo_curto": "Canal pasta",
   "minutos": 15,
@@ -175,7 +175,7 @@
           "id": "e2",
           "titulo": "E2 · Robô ligado",
           "min": "10 min",
-          "texto": "Rode <code>python3 canal_pasta.py</code> (sem <code>--uma-vez</code>). Em outro terminal, na pasta do kit, rode <code>echo \"Diga um provérbio curto\" > entrada/003-proverbio.txt</code>. Depois, Ctrl+C no primeiro.",
+          "texto": "Rode <code>python3 canal_pasta.py</code> (sem <code>--uma-vez</code>). Em outro terminal, rode <code>cd ~/agente-por-pecas-kit && echo \"Diga um provérbio curto\" > entrada/003-proverbio.txt</code>. Depois, Ctrl+C no primeiro.",
           "pronto": "em até alguns segundos aparece <code>[pasta] feito/003-proverbio.txt gravado</code>, sem você digitar nada no terminal do robô."
         }
       ]

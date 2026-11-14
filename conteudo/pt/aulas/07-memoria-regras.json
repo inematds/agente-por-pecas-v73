@@ -1,7 +1,7 @@
 {
   "slug": "memoria-regras",
   "num": 7,
-  "menu": "Memória e regras",
+  "menu": "Regras",
   "titulo": "Memória e regras: o que ele lembra e o que ele não pode",
   "titulo_curto": "Memória e regras",
   "minutos": 18,
@@ -167,7 +167,7 @@
     {
       "tipo": "codigo",
       "titulo": "O furo da aula 6",
-      "sub": "A segunda linha chama a ferramenta direto, como faria um cérebro enganado.",
+      "sub": "A última linha chama a ferramenta direto, como faria um cérebro enganado.",
       "blocos": [
         {
           "rot": "Terminal · o furo",
@@ -295,7 +295,7 @@
           "id": "e3",
           "titulo": "E3 · Só o dono",
           "min": "5 min",
-          "texto": "Rode o bloco Só o dono, com o número errado 123, e mande uma mensagem ao bot (Ctrl+C para parar). Depois troque o 123 pelo número do seu chat: <code>nano .env</code>, troque, Ctrl+O e Enter para salvar, Ctrl+X para sair. Rode de novo e mande outra mensagem.",
+          "texto": "Rode o bloco Só o dono, com o número errado 123, e mande uma mensagem ao bot (Ctrl+C para parar). Depois troque o 123 pelo número do seu chat: <code>nano .env</code>, troque, Ctrl+O e Enter para salvar, Ctrl+X para sair. Rode de novo e mande outra mensagem. Rode o bloco uma vez só; se rodou mais, troque todas as linhas <code>TELEGRAM_DONO</code> no nano.",
           "pronto": "com 123, o terminal mostra <code>[regras] não é o dono: não atendo</code> e o bot responde \"Este agente só atende o dono.\"; com o seu número, o bot responde o seu pedido."
         }
       ]

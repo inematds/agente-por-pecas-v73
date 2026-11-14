@@ -27,7 +27,7 @@
 .fx-passos button:disabled{opacity:.35;cursor:default}
 .fx-passos .fx-prox:not(:disabled){background:var(--amb);border-color:var(--amb);color:var(--amb-ink)}
 .fx-detalhe{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--sf1);border:1px dashed var(--line2);color:var(--txt2);font-size:15px}
-.mapa-aula{margin:0 0 28px}
+.mapa-aula{margin:32px 0 28px}
 .mapa-aula .mapa-t{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;font:700 13px var(--inter);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
 .mapa-aula .mapa-t b{color:var(--amb-t)}
 @media (max-width:700px){
