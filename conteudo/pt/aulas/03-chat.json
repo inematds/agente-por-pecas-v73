@@ -1,0 +1,260 @@
+{
+  "slug": "chat",
+  "num": 3,
+  "menu": "Canal chat",
+  "titulo": "Canal chat: o seu agente numa página web",
+  "titulo_curto": "Canal chat",
+  "minutos": 15,
+  "lead": "O terminal é um canal; uma página de chat é outro. A caixa é a mesma: só muda a porta por onde o pedido entra. Nesta aula o agente ganha uma página no seu navegador, com a trilha das peças embaixo de cada resposta.",
+  "objetivo": "abrir o chat do agente no navegador, mandar um pedido e ver a resposta com a trilha [canal chat] e [cérebro …].",
+  "competencias": [
+    "abrir-canal-web",
+    "ler-trilha-do-chat"
+  ],
+  "pecas": [
+    "canal",
+    "caixa"
+  ],
+  "aprende": [
+    {
+      "t": "Um canal novo sem mexer na caixa"
+    },
+    {
+      "t": "Como a página conversa com o seu computador"
+    },
+    {
+      "t": "Por que a porta muda a cada vez"
+    }
+  ],
+  "hero_alt": "Tela de notebook com uma conversa aberta, numa mesa iluminada pela janela.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "Uma porta nova, a mesma caixa",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "pagina",
+          "titulo": "Página",
+          "sub": "chat.html",
+          "icone": "chat",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "A página do chat, servida pelo seu computador. Você escreve e clica em Enviar."
+        },
+        {
+          "id": "web",
+          "titulo": "Canal web",
+          "sub": "canal_web.py",
+          "icone": "nuvem",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "Um servidor pequeno, em Python puro, numa porta livre que o sistema escolhe (por isso o endereço muda)."
+        },
+        {
+          "id": "caixa",
+          "titulo": "Caixa",
+          "sub": "a mesma",
+          "icone": "chip",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "A mesma <code>caixa.py</code> da aula 2. Ela só fica sabendo que o canal é <code>chat</code>."
+        },
+        {
+          "id": "trilha",
+          "titulo": "Trilha",
+          "sub": "o que cada peça fez",
+          "icone": "lista",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "A caixa anota cada passo. O canal web devolve a resposta e a trilha, e a página mostra as duas."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "pagina",
+          "para": "web",
+          "rot": "pedido"
+        },
+        {
+          "de": "web",
+          "para": "caixa"
+        },
+        {
+          "de": "caixa",
+          "para": "trilha",
+          "rot": "anota"
+        },
+        {
+          "de": "trilha",
+          "para": "pagina",
+          "rot": "volta"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "pagina",
+            "web"
+          ],
+          "ligar": [
+            "pagina>web"
+          ],
+          "titulo": "Você escreve.",
+          "texto": "A página manda o texto para o canal web, no endereço que apareceu no terminal."
+        },
+        {
+          "acende": [
+            "web",
+            "caixa"
+          ],
+          "ligar": [
+            "web>caixa"
+          ],
+          "titulo": "A caixa atende.",
+          "texto": "O canal web entrega o pedido para a mesma caixa, que chama o cérebro."
+        },
+        {
+          "acende": [
+            "caixa",
+            "trilha",
+            "pagina"
+          ],
+          "ligar": [
+            "caixa>trilha",
+            "trilha>pagina"
+          ],
+          "titulo": "Resposta e trilha.",
+          "texto": "A resposta aparece no balão, e a trilha embaixo mostra cada peça que trabalhou."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ligue o chat",
+      "sub": "O terminal fica ocupado com o servidor. Abra o endereço que aparecer; Ctrl+C desliga.",
+      "blocos": [
+        {
+          "rot": "Terminal · ligar o chat",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula3\npython3 canal_web.py"
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Testar sem o navegador",
+      "sub": "O mesmo pedido que a página manda, feito por um comando. Útil para conferir se o canal está de pé.",
+      "blocos": [
+        {
+          "rot": "Terminal · testar o canal chat",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula3 && rm -f web.url\npython3 canal_web.py > chat.log 2>&1 & CHAT=$!\nuntil [ -s web.url ]; do sleep 0.3; done\npython3 -c \"import json,urllib.request; u=open('web.url').read(); r=urllib.request.urlopen(urllib.request.Request(u, json.dumps({'texto':'Diga oi em 3 palavras'}).encode())); print(json.loads(r.read()))\"\nkill $CHAT; cat chat.log"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>{'resposta': 'Oi, tudo bem?', 'trilha': ['[canal chat] Diga oi em 3 palavras', '[cérebro gpt-6-luna] respondeu']}\nchat no ar: http://127.0.0.1:&lt;porta&gt;/\n[canal chat] Diga oi em 3 palavras\n[cérebro gpt-6-luna] respondeu</pre><p>A porta (127.0.0.1:&lt;porta&gt;) muda a cada vez: o sistema escolhe uma livre.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: converse pelo navegador",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · O chat no ar",
+          "min": "5 min",
+          "texto": "Rode o bloco Ligar o chat e abra o endereço no navegador.",
+          "pronto": "a página \"Chat com o meu agente\" abre e o terminal mostra <code>chat no ar: http://127.0.0.1:</code> e um número."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Um pedido seu",
+          "min": "5 min",
+          "texto": "Mande um pedido pela página (por exemplo, \"me dê 3 ideias de almoço\").",
+          "pronto": "aparece o balão da resposta e, embaixo, a trilha com <code>[canal chat]</code>."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "O que mudou na caixa para o agente atender pelo chat?",
+          "opcoes": [
+            "Ela ganhou um modo web.",
+            "Nada: o canal web chama a mesma caixa.",
+            "Ela passou a usar outro cérebro.",
+            "Ela grava as conversas num banco."
+          ],
+          "certa": 1,
+          "explica": "Essa é a ideia das peças: canal novo, caixa igual. Só o nome do canal muda na trilha.",
+          "ref": "s1"
+        },
+        {
+          "p": "Por que o endereço do chat muda a cada vez que você liga?",
+          "opcoes": [
+            "Porque o navegador apaga o endereço antigo.",
+            "Porque o Codex escolhe uma porta para cada conversa.",
+            "Porque é um erro do servidor que aparece às vezes.",
+            "Porque o canal pede ao sistema uma porta livre."
+          ],
+          "certa": 3,
+          "explica": "Porta 0 = \"me dê uma livre\". Assim o chat nunca briga com outro programa que já usa uma porta fixa.",
+          "ref": "s1"
+        },
+        {
+          "p": "A página mostrou a resposta mas não a trilha. Onde olhar primeiro?",
+          "opcoes": [
+            "No terminal do canal web: a trilha também sai lá.",
+            "No objetivo.md, que controla a trilha.",
+            "No Codex, que guarda a trilha de cada conversa no histórico dele.",
+            "Na pasta trabalho/, onde a trilha é gravada."
+          ],
+          "certa": 0,
+          "explica": "O canal web imprime a trilha no terminal e devolve para a página. Se está no terminal, o problema é na página.",
+          "ref": "s3"
+        },
+        {
+          "p": "Quem pode abrir o seu chat local, do jeito que ele está?",
+          "opcoes": [
+            "Qualquer pessoa na internet que souber o endereço da página.",
+            "Qualquer pessoa no mesmo Wi-Fi.",
+            "Só o seu computador: o servidor escuta em 127.0.0.1.",
+            "Só quem tem conta no ChatGPT."
+          ],
+          "certa": 2,
+          "explica": "127.0.0.1 é o próprio computador. Para outras pessoas usarem, o canal certo é o Telegram (próxima aula).",
+          "ref": "s2"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Canal web",
+          "texto": "Uma página e um servidor pequeno, na porta que estiver livre."
+        },
+        {
+          "t": "Mesma caixa",
+          "texto": "Canal novo não muda a caixa."
+        },
+        {
+          "t": "Trilha",
+          "texto": "Aparece na página e no terminal."
+        }
+      ]
+    }
+  ]
+}

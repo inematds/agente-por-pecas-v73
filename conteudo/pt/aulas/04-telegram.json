@@ -1,0 +1,317 @@
+{
+  "slug": "telegram",
+  "num": 4,
+  "menu": "Canal Telegram",
+  "titulo": "Canal Telegram: o agente no seu celular",
+  "titulo_curto": "Canal Telegram",
+  "minutos": 20,
+  "lead": "O chat da aula 3 só abre no seu computador. No Telegram, você manda o pedido de qualquer lugar e o agente responde ali mesmo. Você cria o bot em dois minutos, cola o token num arquivo e liga o canal. A caixa continua a mesma.",
+  "objetivo": "criar um bot no BotFather, gravar o token no .env e ver o agente responder uma mensagem sua no Telegram.",
+  "competencias": [
+    "criar-bot-telegram",
+    "guardar-token-fora-do-codigo",
+    "ligar-canal-telegram"
+  ],
+  "pecas": [
+    "canal",
+    "caixa"
+  ],
+  "aprende": [
+    {
+      "t": "Criar um bot no Telegram e pegar o token"
+    },
+    {
+      "t": "Por que o token fica no .env, fora do código"
+    },
+    {
+      "t": "Como o canal busca as mensagens e responde"
+    }
+  ],
+  "hero_alt": "Celular sobre uma mesa de madeira, com uma conversa aberta e luz de fim de tarde.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "Do seu celular até a caixa, e de volta",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "voce",
+          "titulo": "Você",
+          "sub": "no Telegram",
+          "icone": "usuario",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "Você manda a mensagem para o seu bot, do celular ou do computador."
+        },
+        {
+          "id": "telegram",
+          "titulo": "Telegram",
+          "sub": "guarda a mensagem",
+          "icone": "nuvem",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "Os servidores do Telegram guardam a mensagem até o seu canal vir buscar."
+        },
+        {
+          "id": "canal",
+          "titulo": "Canal",
+          "sub": "canal_telegram.py",
+          "icone": "enviar",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Pergunta ao Telegram \"tem mensagem nova?\" (<code>getUpdates</code>), com o token do seu bot."
+        },
+        {
+          "id": "caixa",
+          "titulo": "Caixa",
+          "sub": "a mesma",
+          "icone": "chip",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "A mesma caixa de sempre. O canal agora se chama <code>telegram</code>."
+        },
+        {
+          "id": "envia",
+          "titulo": "Responde",
+          "sub": "sendMessage",
+          "icone": "chat",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "O canal manda a resposta para o mesmo chat (<code>sendMessage</code>) e anota o número da mensagem para não atender duas vezes."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "voce",
+          "para": "telegram",
+          "rot": "manda"
+        },
+        {
+          "de": "canal",
+          "para": "telegram",
+          "rot": "busca"
+        },
+        {
+          "de": "canal",
+          "para": "caixa"
+        },
+        {
+          "de": "caixa",
+          "para": "envia",
+          "rot": "resposta"
+        },
+        {
+          "de": "envia",
+          "para": "voce",
+          "rot": "chega"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "voce",
+            "telegram"
+          ],
+          "ligar": [
+            "voce>telegram"
+          ],
+          "titulo": "Você manda.",
+          "texto": "A mensagem vai para os servidores do Telegram e espera lá."
+        },
+        {
+          "acende": [
+            "telegram",
+            "canal"
+          ],
+          "ligar": [
+            "canal>telegram"
+          ],
+          "titulo": "O canal busca.",
+          "texto": "O <code>canal_telegram.py</code> pergunta de tempos em tempos se chegou mensagem nova."
+        },
+        {
+          "acende": [
+            "canal",
+            "caixa"
+          ],
+          "ligar": [
+            "canal>caixa"
+          ],
+          "titulo": "A caixa atende.",
+          "texto": "O texto da mensagem vira o pedido. A caixa chama o cérebro, como sempre."
+        },
+        {
+          "acende": [
+            "caixa",
+            "envia",
+            "voce"
+          ],
+          "ligar": [
+            "caixa>envia",
+            "envia>voce"
+          ],
+          "titulo": "A resposta chega.",
+          "texto": "O canal manda a resposta no mesmo chat. No seu celular, ela aparece como mensagem do bot."
+        }
+      ]
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Crie o seu bot",
+      "sub": "No Telegram, com o @BotFather. Leva dois minutos.",
+      "passos": [
+        {
+          "titulo": "Fale com o BotFather",
+          "sub": "/newbot",
+          "texto": [
+            "No Telegram, procure <b>@BotFather</b> e mande <code>/newbot</code>.",
+            "Ele pede um nome (qualquer um) e um usuário que termina em <code>bot</code>."
+          ]
+        },
+        {
+          "titulo": "Copie o token",
+          "sub": "a chave do bot",
+          "texto": [
+            "O BotFather responde com um token, um texto comprido com dois-pontos no meio.",
+            "Quem tem o token controla o bot: não mande para ninguém nem ponha no código."
+          ]
+        },
+        {
+          "titulo": "Grave no .env",
+          "sub": "fora do git",
+          "texto": [
+            "O token vai no arquivo <code>.env</code> da pasta do kit. O <code>.gitignore</code> do kit já deixa o <code>.env</code> de fora do git.",
+            "Depois, mande <code>/start</code> e um <code>oi</code> para o seu bot."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "O token no .env",
+      "sub": "Troque o texto depois do = pelo token que o BotFather mandou.",
+      "blocos": [
+        {
+          "rot": "Terminal · gravar o token",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula4\necho \"TELEGRAM_TOKEN=cole-aqui-o-token-do-BotFather\" > .env"
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Ligue o canal",
+      "sub": "Com --uma, ele atende uma mensagem e para. Sem --uma, fica ouvindo até o Ctrl+C.",
+      "blocos": [
+        {
+          "rot": "Terminal · ouvir o Telegram",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula4\npython3 canal_telegram.py --uma"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>ouvindo o Telegram...\n(mensagem do chat &lt;seu chat&gt;)\n[telegram] boas-vindas enviadas\n(mensagem do chat &lt;seu chat&gt;)\n[canal telegram] oi\n[cérebro gpt-6-luna] respondeu\n[telegram] resposta enviada</pre><p>O <code>/start</code> ganha uma boas-vindas sem passar pelo cérebro; o <code>oi</code> vai para a caixa. O número do chat aparece no seu terminal: guarde, você vai usar na aula 7.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: converse pelo celular",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · O bot e o token",
+          "min": "5 min",
+          "texto": "Crie o bot no BotFather e grave o token no <code>.env</code> do kit.",
+          "pronto": "o comando <code>grep -c TELEGRAM_TOKEN .env</code> mostra <code>1</code> e <code>git status</code> não lista o <code>.env</code>."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · A primeira resposta",
+          "min": "10 min",
+          "texto": "Mande <code>/start</code> e um pedido para o bot e rode o bloco Ouvir o Telegram.",
+          "pronto": "o terminal mostra <code>[canal telegram]</code> com o seu pedido e <code>[telegram] resposta enviada</code>, e a resposta chega no seu Telegram."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "Por que o token fica no .env e não no canal_telegram.py?",
+          "opcoes": [
+            "Porque o Python não lê textos com dois-pontos.",
+            "Porque o Telegram exige esse nome de arquivo.",
+            "Porque o código vai para o git, e o token controla o bot.",
+            "Porque o .env deixa o canal mais rápido para buscar as mensagens."
+          ],
+          "certa": 2,
+          "explica": "O código é público (está no GitHub). O <code>.env</code> fica só na sua máquina, fora do git.",
+          "ref": "s2"
+        },
+        {
+          "p": "Você mandou a mensagem com o canal desligado. O que acontece?",
+          "opcoes": [
+            "Ela fica guardada no Telegram até o canal ligar e buscar.",
+            "Ela se perde no caminho e você precisa mandar tudo de novo depois.",
+            "O Telegram liga o canal sozinho.",
+            "O bot responde com um erro."
+          ],
+          "certa": 0,
+          "explica": "O Telegram guarda as mensagens novas (por até um dia). Quando o canal busca, atende as que estão esperando.",
+          "ref": "s1"
+        },
+        {
+          "p": "Para que serve o arquivo telegram.offset?",
+          "opcoes": [
+            "Guardar o token do bot.",
+            "Guardar as respostas do cérebro para o bot mandar mais rápido depois.",
+            "Contar quantas pessoas falaram com o bot.",
+            "Lembrar a última mensagem atendida, para não repetir."
+          ],
+          "certa": 3,
+          "explica": "O canal anota o número da mensagem seguinte. Na próxima busca, o Telegram só manda as novas.",
+          "ref": "s1"
+        },
+        {
+          "p": "Do jeito que está nesta aula, quem o seu bot atende?",
+          "opcoes": [
+            "Só você, porque o token do bot foi criado com a sua conta do Telegram.",
+            "Qualquer pessoa que achar o bot; a trava vem na aula 7.",
+            "Ninguém, até você publicar o bot.",
+            "Só quem está na sua lista de contatos."
+          ],
+          "certa": 1,
+          "explica": "Bot de Telegram é público. A regra \"só o dono\" é uma peça da aula 7, com o número do seu chat.",
+          "ref": "s4"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Bot",
+          "texto": "Criado no @BotFather; o token é a chave."
+        },
+        {
+          "t": ".env",
+          "texto": "O token fica fora do código e fora do git."
+        },
+        {
+          "t": "Canal",
+          "texto": "Busca as mensagens, entrega à caixa e responde no mesmo chat."
+        }
+      ]
+    }
+  ]
+}

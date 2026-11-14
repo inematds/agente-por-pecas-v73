@@ -11,7 +11,7 @@ ap = argparse.ArgumentParser(); ap.add_argument("--links", action="store_true");
 args = ap.parse_args()
 base = RAIZ if args.lang == "pt" else RAIZ / args.lang
 erros = []
-TETO_PALAVRAS = 1400   # v7.3: palavras visíveis por aula, sem contar código, saídas e detalhes que abrem ao clicar
+TETO_PALAVRAS = 1100   # v7.3: palavras visíveis por aula, sem contar código, saídas e detalhes que abrem ao clicar
 TAGS_HTML = set("""a abbr article aside audio b blockquote body br button canvas caption circle code col dd defs details dialog
 div dl dt ellipse em fieldset figcaption figure footer form g h1 h2 h3 h4 h5 h6 head header hr html i iframe img input
 kbd label legend li line lineargradient link main mark marker meta nav noscript ol optgroup option p path pattern

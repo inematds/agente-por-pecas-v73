@@ -1,0 +1,303 @@
+{
+  "slug": "objetivo",
+  "num": 1,
+  "menu": "O mapa e o objetivo",
+  "titulo": "O mapa do agente, e o objetivo do seu",
+  "titulo_curto": "Mapa e objetivo",
+  "minutos": 12,
+  "lead": "No chat, você pede e a IA devolve texto; quem faz é você. Um agente recebe o pedido sozinho, faz a tarefa e confere antes de dizer pronto. Nesta aula você vê as peças de um agente num mapa só, baixa o kit e escreve o objetivo do seu.",
+  "objetivo": "baixar o kit, confirmar o login do Codex e escrever o objetivo.md: o que o agente faz, o que não faz e quando está pronto.",
+  "competencias": [
+    "diferenciar-chat-de-agente",
+    "ler-o-mapa-das-pecas",
+    "escrever-objetivo"
+  ],
+  "pecas": [
+    "resultado"
+  ],
+  "aprende": [
+    {
+      "t": "A diferença entre o chat e um agente"
+    },
+    {
+      "t": "As nove peças do mapa, e em que aula cada uma entra"
+    },
+    {
+      "t": "Escrever o objetivo antes de escrever código"
+    }
+  ],
+  "hero_alt": "Peças de um mecanismo organizadas sobre uma mesa clara, prontas para montar.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "Chat ou agente?",
+      "sub": "Clique em Próximo passo: o mesmo pedido, nos dois caminhos.",
+      "nos": [
+        {
+          "id": "voce",
+          "titulo": "Você",
+          "sub": "pede",
+          "icone": "usuario",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "Você escreve o pedido no chat do ChatGPT ou do Claude."
+        },
+        {
+          "id": "chat",
+          "titulo": "Chat",
+          "sub": "responde",
+          "icone": "chat",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "O chat devolve um texto. Ele não abre o seu arquivo, não anota na sua lista, não confere nada."
+        },
+        {
+          "id": "maos",
+          "titulo": "Você faz",
+          "sub": "copia e cola",
+          "icone": "caneta",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Quem faz a tarefa ainda é você: copia, cola, confere."
+        },
+        {
+          "id": "canal",
+          "titulo": "Canal",
+          "sub": "chega sozinho",
+          "icone": "enviar",
+          "col": 1,
+          "lin": 2,
+          "detalhe": "No agente, o pedido chega por um canal: Telegram, chat, ou um arquivo numa pasta. Às vezes sem ninguém conversando."
+        },
+        {
+          "id": "agente",
+          "titulo": "Agente",
+          "sub": "faz",
+          "icone": "robo",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "A caixa, o cérebro, as receitas e as ferramentas fazem a tarefa de verdade: leem, gravam, anotam."
+        },
+        {
+          "id": "conferido",
+          "titulo": "Conferido",
+          "sub": "só então pronto",
+          "icone": "check",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "O verificador confere o resultado contra o pedido. Reprovou: tenta de novo. Três vezes: cancela e avisa."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "voce",
+          "para": "chat"
+        },
+        {
+          "de": "chat",
+          "para": "maos",
+          "rot": "texto"
+        },
+        {
+          "de": "canal",
+          "para": "agente"
+        },
+        {
+          "de": "agente",
+          "para": "conferido",
+          "rot": "faz"
+        },
+        {
+          "de": "conferido",
+          "para": "agente",
+          "rot": "de novo",
+          "volta": "baixo"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "voce",
+            "chat",
+            "maos"
+          ],
+          "ligar": [
+            "voce>chat",
+            "chat>maos"
+          ],
+          "titulo": "No chat.",
+          "texto": "Você pede, ele escreve, você faz. O chat para no texto."
+        },
+        {
+          "acende": [
+            "canal",
+            "agente"
+          ],
+          "ligar": [
+            "canal>agente"
+          ],
+          "titulo": "No agente, o pedido chega.",
+          "texto": "Pelo Telegram, por um chat numa página ou por um arquivo numa pasta. Você não precisa estar olhando."
+        },
+        {
+          "acende": [
+            "agente",
+            "conferido"
+          ],
+          "ligar": [
+            "agente>conferido",
+            "conferido>agente"
+          ],
+          "titulo": "Ele faz e confere.",
+          "texto": "O agente faz a tarefa e só diz pronto depois que o verificador aprova. Se não aprovar, tenta de novo."
+        }
+      ]
+    },
+    {
+      "tipo": "passos",
+      "titulo": "O que você precisa",
+      "sub": "Três coisas. Clique em cada uma.",
+      "passos": [
+        {
+          "titulo": "O terminal",
+          "sub": "Linux, Mac ou WSL",
+          "texto": [
+            "O kit roda no terminal, com o Python 3 que já vem no Linux e no Mac (no Windows, use o WSL).",
+            "Não precisa instalar biblioteca nenhuma: só Python puro."
+          ]
+        },
+        {
+          "titulo": "O Codex",
+          "sub": "a sua assinatura",
+          "texto": [
+            "O cérebro do agente é o Codex, da OpenAI, que usa a sua assinatura do ChatGPT. Não precisa de chave de API.",
+            "Instale com <code>npm i -g @openai/codex</code> e entre com <code>codex login</code>."
+          ]
+        },
+        {
+          "titulo": "O kit",
+          "sub": "no GitHub",
+          "texto": [
+            "Cada peça do agente é um arquivo, e cada aula é uma tag do git: <code>git checkout aula2</code>, <code>aula3</code>…",
+            "Você não digita o código: troca de aula e roda."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Baixe o kit",
+      "sub": "Rode no terminal. A primeira linha da saída tem de ser Logged in.",
+      "blocos": [
+        {
+          "rot": "Terminal · baixar o kit",
+          "icone": "terminal",
+          "conteudo": "cd ~ && git clone -q https://github.com/inematds/agente-por-pecas-kit && cd agente-por-pecas-kit\ngit checkout -q aula1\ncodex login status && cat objetivo.md"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>Logged in using ChatGPT\n# Objetivo do meu agente\n\n## O que ele faz\nRecebe pedidos pelo chat, pelo Telegram e por arquivos numa pasta, e devolve a resposta ou faz a tarefa\n(anotar na lista, ler um arquivo, lembrar de um fato).\n\n## O que ele NÃO faz\n- Não mexe em nada fora da pasta `trabalho/`.\n- Não substitui arquivo que já existe sem o meu OK.\n- Não responde a quem não é o dono no Telegram.\n\n## Quando está pronto\n- Um pedido exato (\"adicione pão na lista\") é feito pela receita, sem chamar o modelo.\n- Um pedido aberto (\"resuma notas.txt\") passa pelo modelo e o verificador confere o resultado.\n- Se o verificador reprovar 3 vezes, o agente cancela e avisa.</pre>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: o objetivo do seu agente",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · O kit na sua máquina",
+          "min": "5 min",
+          "texto": "Instale o Codex, faça o <code>codex login</code> e rode o bloco acima.",
+          "pronto": "a saída começa com <code>Logged in using ChatGPT</code> e mostra o <code>objetivo.md</code> do kit."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · O seu objetivo",
+          "min": "10 min",
+          "texto": "Abra o <code>objetivo.md</code> e reescreva as três partes para o agente que você quer: o que ele faz, o que não faz e quando está pronto.",
+          "pronto": "o arquivo tem as três partes, e a parte \"Quando está pronto\" tem pelo menos uma frase que dá para conferir (um arquivo, uma palavra, um número)."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "Qual é a diferença central entre o chat e um agente?",
+          "opcoes": [
+            "O chat usa um modelo pior que o do agente.",
+            "O agente só funciona com internet rápida e um computador mais forte.",
+            "O chat responde em texto; o agente faz a tarefa e confere.",
+            "O agente responde mais rápido que o chat."
+          ],
+          "certa": 2,
+          "explica": "O modelo pode ser o mesmo. A diferença está em volta dele: canal, caixa, ferramentas e verificador.",
+          "ref": "s1"
+        },
+        {
+          "p": "Por que escrever o objetivo.md antes de qualquer código?",
+          "opcoes": [
+            "Porque o Codex não roda sem esse arquivo.",
+            "Porque ele diz o que conferir para saber se está pronto.",
+            "Porque o git exige um arquivo de texto no começo.",
+            "Porque o objetivo vira a primeira receita que o agente vai usar."
+          ],
+          "certa": 1,
+          "explica": "Sem \"quando está pronto\", não há o que medir. O verificador da aula 8 nasce dessa frase.",
+          "ref": "s4"
+        },
+        {
+          "p": "Qual frase serve para a parte \"Quando está pronto\"?",
+          "opcoes": [
+            "Uma frase dizendo que o agente vai ficar bom, rápido e confiável.",
+            "Uma frase dizendo que o dono gostou do resultado.",
+            "Uma frase com a promessa de funcionar sempre.",
+            "O pedido \"anote pão\" deixa a palavra pão em lista.txt."
+          ],
+          "certa": 3,
+          "explica": "Dá para conferir com um comando: o arquivo existe e tem a palavra. As outras dependem de opinião.",
+          "ref": "s4"
+        },
+        {
+          "p": "O cérebro do agente neste curso usa…",
+          "opcoes": [
+            "A sua assinatura do ChatGPT, pelo Codex, sem chave de API.",
+            "Uma chave de API paga, gravada no código.",
+            "Um modelo que você treina do zero na aula 2.",
+            "O navegador, abrindo o site do ChatGPT."
+          ],
+          "certa": 0,
+          "explica": "O <code>codex exec</code> usa o login da sua assinatura. Quem quiser tudo local tem o módulo à parte com o Ollama.",
+          "ref": "s2"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Chat",
+          "texto": "Responde texto; quem faz é você."
+        },
+        {
+          "t": "Agente",
+          "texto": "Recebe, faz e confere antes de dizer pronto."
+        },
+        {
+          "t": "Objetivo",
+          "texto": "Faz, não faz e quando está pronto, com algo que dá para conferir."
+        }
+      ]
+    }
+  ]
+}

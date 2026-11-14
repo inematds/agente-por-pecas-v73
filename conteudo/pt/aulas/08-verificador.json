@@ -1,0 +1,452 @@
+{
+  "slug": "verificador",
+  "num": 8,
+  "menu": "Verificador e loop",
+  "titulo": "Verificador e loop: só diz pronto depois de conferir",
+  "titulo_curto": "Verificador e loop",
+  "minutos": 20,
+  "lead": "Até aqui o agente dizia pronto porque respondeu. Agora um verificador confere o resultado contra o pedido. Reprovou, ele tenta de novo; reprovou três vezes, cancela e avisa. E você vai ver por que um exemplo concreto vale mais que um juiz.",
+  "objetivo": "ver o verificador aprovar com exemplo, cancelar depois de 3 tentativas e o robô da pasta conferir cada pedido com a linha esperado:.",
+  "competencias": [
+    "conferir-com-exemplo",
+    "usar-juiz",
+    "fechar-o-loop"
+  ],
+  "pecas": [
+    "verificador",
+    "cerebro",
+    "resultado"
+  ],
+  "aprende": [
+    {
+      "t": "Conferência exata (código) e juiz (outro cérebro)"
+    },
+    {
+      "t": "O loop: sucesso, tentar de novo ou cancelar"
+    },
+    {
+      "t": "Por que o aviso de reprovação não pode dar a resposta"
+    }
+  ],
+  "hero_alt": "Lupa sobre uma folha com marcas de conferência, ao lado de uma xícara.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "O loop do verificador",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "cerebro",
+          "titulo": "Cérebro",
+          "sub": "faz a tarefa",
+          "icone": "cerebro",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "O cérebro faz o pedido com as ferramentas, como nas aulas anteriores."
+        },
+        {
+          "id": "exemplo",
+          "titulo": "Tem exemplo?",
+          "sub": "esperado",
+          "icone": "lupa",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "O pedido traz o que tem de aparecer? (<code>--esperado \"15\"</code> no terminal, ou uma linha <code>esperado:</code> no arquivo da pasta)."
+        },
+        {
+          "id": "exato",
+          "titulo": "Código",
+          "sub": "confere exato",
+          "icone": "check",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Com exemplo, quem confere é o código: o esperado está no resultado? Sim ou não. Acerta sempre."
+        },
+        {
+          "id": "juiz",
+          "titulo": "Juiz",
+          "sub": "outro cérebro",
+          "icone": "cerebro",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "Sem exemplo, um segundo cérebro julga, lendo o pedido, o resultado e o que as ferramentas devolveram. Ajuda, mas também erra."
+        },
+        {
+          "id": "aprovado",
+          "titulo": "Sucesso",
+          "sub": "aprovado",
+          "icone": "alvo",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "Aprovado: a resposta sai, com <code>[resultado] sucesso na tentativa N</code>."
+        },
+        {
+          "id": "cancela",
+          "titulo": "Cancela",
+          "sub": "3 reprovações",
+          "icone": "x",
+          "col": 1,
+          "lin": 2,
+          "detalhe": "Reprovado três vezes: <code>Cancelei: o verificador reprovou 3 vezes</code>. Melhor que entregar errado."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "cerebro",
+          "para": "exemplo",
+          "rot": "resultado"
+        },
+        {
+          "de": "exemplo",
+          "para": "exato",
+          "rot": "sim"
+        },
+        {
+          "de": "exemplo",
+          "para": "juiz",
+          "rot": "não"
+        },
+        {
+          "de": "exato",
+          "para": "aprovado",
+          "rot": "ok"
+        },
+        {
+          "de": "juiz",
+          "para": "aprovado",
+          "rot": "ok"
+        },
+        {
+          "de": "juiz",
+          "para": "cerebro",
+          "rot": "de novo"
+        },
+        {
+          "de": "juiz",
+          "para": "cancela",
+          "rot": "3ª vez"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "cerebro",
+            "exemplo"
+          ],
+          "ligar": [
+            "cerebro>exemplo"
+          ],
+          "titulo": "O cérebro entrega.",
+          "texto": "O resultado não vai direto para você: passa pelo verificador."
+        },
+        {
+          "acende": [
+            "exemplo",
+            "exato",
+            "aprovado"
+          ],
+          "ligar": [
+            "exemplo>exato",
+            "exato>aprovado"
+          ],
+          "titulo": "Com exemplo: o código confere.",
+          "texto": "\"A que horas é a reunião?\" com <code>--esperado \"15\"</code>: achou 15 na resposta, aprovado."
+        },
+        {
+          "acende": [
+            "exemplo",
+            "juiz",
+            "aprovado"
+          ],
+          "ligar": [
+            "exemplo>juiz",
+            "juiz>aprovado"
+          ],
+          "titulo": "Sem exemplo: o juiz.",
+          "texto": "Outro cérebro lê o pedido, o resultado e o que foi lido, e responde SIM ou NAO com o motivo."
+        },
+        {
+          "acende": [
+            "juiz",
+            "cerebro"
+          ],
+          "ligar": [
+            "juiz>cerebro"
+          ],
+          "titulo": "Reprovado: de novo.",
+          "texto": "O cérebro recebe um aviso de que foi reprovado (sem a resposta certa) e tenta de novo."
+        },
+        {
+          "acende": [
+            "juiz",
+            "cancela"
+          ],
+          "ligar": [
+            "juiz>cancela"
+          ],
+          "titulo": "Três vezes: cancela.",
+          "texto": "Na terceira reprovação, o agente para e avisa. Isso também vale para o código: \"Acme\" nunca aparece, então cancela."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Com exemplo: aprova ou cancela",
+      "sub": "O mesmo arquivo de notas. Na primeira, o esperado está lá; na segunda, não existe.",
+      "blocos": [
+        {
+          "rot": "Terminal · aprovado com exemplo",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\npython3 canal_terminal.py \"Leia notas.txt e diga a que horas é a reunião\" --esperado \"15\""
+        },
+        {
+          "rot": "Terminal · cancelado com exemplo",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\npython3 canal_terminal.py \"Leia notas.txt e diga o nome do fornecedor\" --esperado \"Acme\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Aprovado (14/11/2026)",
+            "html": "<pre>[canal terminal] Leia notas.txt e diga a que horas é a reunião\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] aprovado · exato: achei \"15\" no resultado\n[resultado] sucesso na tentativa 1\nA reunião é às 15h.</pre>"
+          },
+          {
+            "rot": "Cancelado (14/11/2026)",
+            "html": "<pre>[canal terminal] Leia notas.txt e diga o nome do fornecedor\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] reprovado · exato: não achei \"Acme\" no resultado\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] reprovado · exato: não achei \"Acme\" no resultado\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] reprovado · exato: não achei \"Acme\" no resultado\n[resultado] cancelado depois de 3 tentativas\nCancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei \"Acme\" no resultado</pre><p>O fornecedor não tem nome no arquivo. Um agente sem verificador inventaria um; este cancelou.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Sem exemplo, o juiz; com exemplo, o código",
+      "sub": "O mesmo pedido duas vezes. Compare as linhas [verificador].",
+      "blocos": [
+        {
+          "rot": "Terminal · o juiz",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\npython3 canal_terminal.py \"Leia notas.txt e diga o que tenho que levar, em inglês\""
+        },
+        {
+          "rot": "Terminal · o exemplo",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\npython3 canal_terminal.py \"Leia notas.txt e diga o que tenho que levar, em inglês\" --esperado \"contract\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Juiz (14/11/2026)",
+            "html": "<pre>[canal terminal] Leia notas.txt e diga o que tenho que levar, em inglês\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] reprovado · juiz gpt-6-luna: NAO — a resposta está em inglês, mas não informa que a reunião é na sexta às 15h.\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] aprovado · juiz gpt-6-luna: SIM — diz em inglês o que levar: o contrato.\n[resultado] sucesso na tentativa 2\nBring the contract.</pre><p>Nesta captura, o juiz reprovou uma resposta certa (\"não informa que a reunião é na sexta\", coisa que o pedido não pediu) e só aprovou na segunda tentativa. Em outra rodada, ele pode aprovar de primeira: o juiz varia.</p>"
+          },
+          {
+            "rot": "Exemplo (14/11/2026)",
+            "html": "<pre>[canal terminal] Leia notas.txt e diga o que tenho que levar, em inglês\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n[verificador] aprovado · exato: achei \"contract\" no resultado\n[resultado] sucesso na tentativa 1\nBring the contract.</pre><p>Com <code>--esperado \"contract\"</code>, a conferência é feita pelo código: igual toda vez.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "O robô da pasta, com verificador",
+      "sub": "No canal sem conversa, o exemplo vai no próprio arquivo: uma linha esperado:.",
+      "blocos": [
+        {
+          "rot": "Terminal · o robô que confere",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula8 && mkdir -p trabalho entrada\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\nprintf 'Leia notas.txt e diga só o horário da reunião.\\nesperado: 15h\\n' > entrada/hora.txt\nprintf 'Leia notas.txt e diga o telefone do fornecedor.\\nesperado: telefone:\\n' > entrada/telefone.txt\npython3 canal_pasta.py --uma-vez | grep -E \"canal|verificador|resultado|pasta\\]\"\ncat feito/hora.txt feito/telefone.txt"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal pasta hora.txt] Leia notas.txt e diga só o horário da reunião.\n[verificador] aprovado · exato: achei \"15h\" no resultado\n[resultado] sucesso na tentativa 1\n[pasta] feito/hora.txt gravado\n[canal pasta telefone.txt] Leia notas.txt e diga o telefone do fornecedor.\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[verificador] reprovado · exato: não achei \"telefone:\" no resultado\n[resultado] cancelado depois de 3 tentativas\n[pasta] feito/telefone.txt gravado\nPEDIDO: Leia notas.txt e diga só o horário da reunião.\nRESULTADO: 15h\nPEDIDO: Leia notas.txt e diga o telefone do fornecedor.\nRESULTADO: Cancelei: o verificador reprovou 3 vezes. Último motivo: exato: não achei \"telefone:\" no resultado</pre>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "passos",
+      "titulo": "Dois cuidados que a captura ensinou",
+      "sub": "Os dois apareceram de verdade enquanto o kit era montado.",
+      "passos": [
+        {
+          "titulo": "O aviso não dá a resposta",
+          "sub": "vazamento",
+          "texto": [
+            "Numa versão anterior, o aviso de reprovação dizia \"não achei Acme\". Na tentativa seguinte, o modelo respondeu \"O nome do fornecedor é Acme\", inventado.",
+            "Por isso o aviso diz só que reprovou, nunca o esperado."
+          ]
+        },
+        {
+          "titulo": "O juiz precisa ver o que o agente viu",
+          "sub": "evidência",
+          "texto": [
+            "Sem o texto do arquivo e sem a memória, o juiz reprovava respostas certas (\"não há informação que confirme o nome Thor\").",
+            "Agora ele recebe o que as ferramentas devolveram e o que o agente sabia."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: o seu verificador",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Aprovar e cancelar",
+          "min": "8 min",
+          "texto": "Rode os dois blocos com exemplo.",
+          "pronto": "o primeiro termina com <code>[resultado] sucesso na tentativa 1</code> e o segundo com três linhas <code>reprovado</code> e <code>Cancelei</code>."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Um pedido seu com exemplo",
+          "min": "10 min",
+          "texto": "Crie um <code>.txt</code> em <code>entrada/</code> com um pedido seu e uma linha <code>esperado:</code> com uma palavra que a resposta certa tem de ter. Rode <code>python3 canal_pasta.py --uma-vez</code>.",
+          "pronto": "o arquivo em <code>feito/</code> tem a resposta e a trilha mostra <code>[verificador] aprovado · exato: achei</code> com a sua palavra."
+        }
+      ]
+    },
+    {
+      "tipo": "fluxo",
+      "titulo": "Depois deste curso: vários agentes",
+      "sub": "O verificador já é um segundo cérebro. O próximo passo é um agente que distribui trabalho para outros.",
+      "nos": [
+        {
+          "id": "gerente",
+          "titulo": "Gerente",
+          "sub": "distribui",
+          "icone": "robo",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "Um agente que recebe o pedido grande, quebra em partes e manda cada parte para um agente."
+        },
+        {
+          "id": "a1",
+          "titulo": "Agente A",
+          "sub": "uma parte",
+          "icone": "robo",
+          "col": 1,
+          "lin": 2,
+          "detalhe": "Cada agente é o que você montou: canal, caixa, cérebro, ferramentas e verificador."
+        },
+        {
+          "id": "a2",
+          "titulo": "Agente B",
+          "sub": "outra parte",
+          "icone": "robo",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "Pode usar outro cérebro, outras receitas e outras ferramentas."
+        },
+        {
+          "id": "confere",
+          "titulo": "Verificador",
+          "sub": "junta e confere",
+          "icone": "lupa",
+          "col": 2,
+          "lin": 3,
+          "detalhe": "No fim, alguém confere o todo contra o pedido original."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "gerente",
+          "para": "a1"
+        },
+        {
+          "de": "gerente",
+          "para": "a2"
+        },
+        {
+          "de": "a1",
+          "para": "confere"
+        },
+        {
+          "de": "a2",
+          "para": "confere"
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "Por que o exemplo concreto é melhor que o juiz?",
+          "opcoes": [
+            "Porque o juiz é mais caro que o Codex.",
+            "Porque o juiz só entende pedidos em inglês e erra os em português.",
+            "Porque o exemplo deixa o cérebro mais rápido.",
+            "Porque o código confere igual toda vez, e o juiz varia."
+          ],
+          "certa": 3,
+          "explica": "Com exemplo, a conferência é sim ou não, pelo código. O juiz é outro modelo: julga bem quase sempre, mas não sempre.",
+          "ref": "s3"
+        },
+        {
+          "p": "O verificador reprovou. O que o aviso para o cérebro diz?",
+          "opcoes": [
+            "Que foi reprovado, sem dizer o que era esperado.",
+            "O texto esperado, para ele copiar.",
+            "O motivo completo do juiz, com a resposta certa para ele corrigir.",
+            "Nada: o cérebro não fica sabendo."
+          ],
+          "certa": 0,
+          "explica": "Se o aviso trouxesse o esperado, o modelo poderia só copiar ou inventar (foi o que aconteceu com o \"Acme\").",
+          "ref": "s5"
+        },
+        {
+          "p": "Quando o agente cancela?",
+          "opcoes": [
+            "Quando o cérebro demora mais de 1 minuto.",
+            "Quando o pedido não tem exemplo.",
+            "Quando o verificador reprova 3 vezes.",
+            "Quando o juiz e o código discordam."
+          ],
+          "certa": 2,
+          "explica": "<code>MAX_TENTATIVAS = 3</code> na caixa. Cancelar e avisar é melhor que entregar um resultado reprovado.",
+          "ref": "s1"
+        },
+        {
+          "p": "No robô da pasta, onde vai o exemplo concreto?",
+          "opcoes": [
+            "No regras.md, na seção de exemplos.",
+            "Numa linha esperado: dentro do próprio arquivo do pedido.",
+            "No nome do arquivo, depois do número.",
+            "No .env, junto do token."
+          ],
+          "certa": 1,
+          "explica": "O <code>canal_pasta.py</code> separa a linha <code>esperado:</code> do pedido e passa para o verificador.",
+          "ref": "s4"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Exemplo",
+          "texto": "O código confere: igual toda vez."
+        },
+        {
+          "t": "Juiz",
+          "texto": "Outro cérebro, com a evidência; ajuda, mas varia."
+        },
+        {
+          "t": "Loop",
+          "texto": "Sucesso, de novo (sem dar a resposta) ou cancela na 3ª."
+        }
+      ]
+    }
+  ]
+}

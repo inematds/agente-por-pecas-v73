@@ -1,0 +1,314 @@
+{
+  "slug": "caixa-cerebro",
+  "num": 2,
+  "menu": "Caixa e cérebro",
+  "titulo": "A caixa e o cérebro: o primeiro pedido",
+  "titulo_curto": "Caixa e cérebro",
+  "minutos": 15,
+  "lead": "A caixa é a rotina que recebe o pedido; o cérebro é o modelo que pensa. Aqui eles se encontram pela primeira vez: o terminal entrega o pedido, a caixa chama o Codex da sua assinatura e devolve a resposta. São três arquivos curtos.",
+  "objetivo": "rodar o primeiro pedido pelo canal terminal e ver na trilha a caixa chamar o cérebro gpt-6-luna.",
+  "competencias": [
+    "separar-caixa-de-cerebro",
+    "chamar-o-codex",
+    "trocar-de-cerebro"
+  ],
+  "pecas": [
+    "canal",
+    "caixa",
+    "cerebro"
+  ],
+  "aprende": [
+    {
+      "t": "O que é a caixa e o que é o cérebro"
+    },
+    {
+      "t": "Como a caixa chama o Codex sem chave de API"
+    },
+    {
+      "t": "Trocar o cérebro por um modelo local (opcional)"
+    }
+  ],
+  "hero_alt": "Uma caixa de metal aberta com fios ligados a uma luz suave, sobre uma bancada.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "O caminho do primeiro pedido",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "terminal",
+          "titulo": "Terminal",
+          "sub": "canal_terminal.py",
+          "icone": "terminal",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "O canal mais simples: o pedido vem da linha de comando. <code>canal_terminal.py</code> tem 4 linhas."
+        },
+        {
+          "id": "caixa",
+          "titulo": "Caixa",
+          "sub": "caixa.py",
+          "icone": "chip",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "Monta a conversa (instruções + pedido) e chama o cérebro. Imprime a trilha: <code>[canal …]</code>, <code>[cérebro …]</code>."
+        },
+        {
+          "id": "cerebro",
+          "titulo": "Cérebro",
+          "sub": "cerebro.py",
+          "icone": "cerebro",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Escolhe quem pensa. Por padrão, o Codex; com <code>CEREBRO=local</code>, o Ollama."
+        },
+        {
+          "id": "codex",
+          "titulo": "Codex",
+          "sub": "sua assinatura",
+          "icone": "nuvem",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "<code>codex exec</code> numa pasta vazia, só leitura, sem chave de API. O modelo padrão é o <code>gpt-6-luna</code>; troque com <code>MODELO=…</code>."
+        },
+        {
+          "id": "local",
+          "titulo": "Ollama",
+          "sub": "opcional, local",
+          "icone": "chip",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "Módulo à parte (<code>cerebro_local.py</code>) para rodar tudo no seu computador. Precisa do Ollama e de um modelo baixado."
+        },
+        {
+          "id": "resposta",
+          "titulo": "Resposta",
+          "sub": "volta ao terminal",
+          "icone": "alvo",
+          "col": 1,
+          "lin": 2,
+          "detalhe": "A resposta volta pela caixa e aparece no terminal."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "terminal",
+          "para": "caixa",
+          "rot": "pedido"
+        },
+        {
+          "de": "caixa",
+          "para": "cerebro"
+        },
+        {
+          "de": "cerebro",
+          "para": "codex",
+          "rot": "padrão"
+        },
+        {
+          "de": "cerebro",
+          "para": "local",
+          "rot": "local"
+        },
+        {
+          "de": "codex",
+          "para": "resposta",
+          "volta": "baixo"
+        },
+        {
+          "de": "local",
+          "para": "resposta"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "terminal",
+            "caixa"
+          ],
+          "ligar": [
+            "terminal>caixa"
+          ],
+          "titulo": "O pedido entra.",
+          "texto": "<code>python3 canal_terminal.py \"seu pedido\"</code> entrega o texto para a caixa."
+        },
+        {
+          "acende": [
+            "caixa",
+            "cerebro",
+            "codex"
+          ],
+          "ligar": [
+            "caixa>cerebro",
+            "cerebro>codex"
+          ],
+          "titulo": "A caixa chama o cérebro.",
+          "texto": "O <code>cerebro.py</code> chama o Codex da sua assinatura, numa pasta vazia, e espera a resposta."
+        },
+        {
+          "acende": [
+            "codex",
+            "resposta"
+          ],
+          "ligar": [
+            "codex>resposta"
+          ],
+          "titulo": "A resposta volta.",
+          "texto": "A caixa imprime a trilha e a resposta. Pronto: o primeiro pedido."
+        },
+        {
+          "acende": [
+            "cerebro",
+            "local",
+            "resposta"
+          ],
+          "ligar": [
+            "cerebro>local",
+            "local>resposta"
+          ],
+          "titulo": "Ou tudo local.",
+          "texto": "Com <code>CEREBRO=local</code>, o mesmo pedido vai para o Ollama. A caixa não muda nada."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "A caixa da aula 2",
+      "sub": "Repare: a caixa não sabe qual modelo pensa. Ela só chama cerebro.pensar().",
+      "blocos": [
+        {
+          "rot": "Arquivo · caixa.py (tag aula2)",
+          "icone": "arquivo",
+          "conteudo": "\"\"\"A CAIXA: a rotina que recebe o pedido de qualquer canal, chama o cérebro e devolve o resultado.\"\"\"\nimport cerebro\n\n\ndef atender(pedido, canal=\"terminal\", mostrar=print):\n    mostrar(f\"[canal {canal}] {pedido}\")\n    mensagens = [{\"role\": \"system\", \"content\": \"Você é um assistente. Responda em português, curto.\"},\n                 {\"role\": \"user\", \"content\": pedido}]\n    resposta = cerebro.pensar(mensagens).get(\"content\", \"\")\n    mostrar(f\"[cérebro {cerebro.MODELO}] respondeu\")\n    return resposta"
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "O primeiro pedido",
+      "sub": "Leva uns 10 segundos: é o Codex pensando.",
+      "blocos": [
+        {
+          "rot": "Terminal · o primeiro pedido",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula2\npython3 canal_terminal.py \"Em uma frase: o que é um agente de IA?\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] Em uma frase: o que é um agente de IA?\n[cérebro gpt-6-luna] respondeu\nUm agente de IA é um sistema que percebe informações, decide o que fazer e executa ações para atingir um objetivo.</pre><p>A frase da resposta muda a cada vez. A trilha não: <code>[canal terminal]</code> e <code>[cérebro gpt-6-luna] respondeu</code>.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Opcional: o cérebro local",
+      "sub": "Só se você tem o Ollama com o llama3.2 baixado. A caixa e o canal ficam iguais.",
+      "blocos": [
+        {
+          "rot": "Terminal · cérebro local (opcional)",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula2\nCEREBRO=local python3 canal_terminal.py \"Em uma frase: o que é um agente de IA?\""
+        }
+      ]
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: falar com o seu agente",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · O primeiro pedido",
+          "min": "5 min",
+          "texto": "Rode o bloco do primeiro pedido.",
+          "pronto": "a saída tem as linhas <code>[canal terminal]</code> e <code>[cérebro gpt-6-luna] respondeu</code>, e uma resposta em português."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Outro cérebro",
+          "min": "5 min",
+          "texto": "Rode o mesmo pedido com outro modelo do Codex, sem mexer no código: <code>MODELO=gpt-6-sol python3 canal_terminal.py \"Em uma frase: o que é um agente de IA?\"</code>.",
+          "pronto": "a trilha mostra <code>[cérebro gpt-6-sol] respondeu</code>."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "Qual é o papel da caixa?",
+          "opcoes": [
+            "Receber o pedido do canal, chamar o cérebro e devolver o resultado.",
+            "Escolher sozinha o melhor modelo para cada pedido.",
+            "Guardar a chave de API do Codex.",
+            "Desenhar a página do chat."
+          ],
+          "certa": 0,
+          "explica": "A caixa é a rotina. Ela não pensa: organiza o caminho entre o canal e o cérebro.",
+          "ref": "s1"
+        },
+        {
+          "p": "Para trocar o Codex por um modelo local, o que muda?",
+          "opcoes": [
+            "A caixa inteira, que é reescrita para o Ollama.",
+            "O canal, que passa a falar com o Ollama.",
+            "Nada no código: a variável CEREBRO=local.",
+            "O objetivo.md, que diz qual modelo usar."
+          ],
+          "certa": 2,
+          "explica": "O <code>cerebro.py</code> lê a variável e chama o módulo local. Caixa e canal não sabem quem pensa.",
+          "ref": "s1"
+        },
+        {
+          "p": "Por que o Codex roda numa pasta vazia, só leitura?",
+          "opcoes": [
+            "Porque fica mais rápido sem arquivos.",
+            "Porque ele só decide; quem mexe em arquivo é a caixa.",
+            "Porque a assinatura do ChatGPT não deixa o Codex gravar arquivos.",
+            "Porque o Python não consegue abrir outras pastas."
+          ],
+          "certa": 1,
+          "explica": "O cérebro pensa, a caixa executa. Assim as regras das ferramentas valem sempre (aula 7).",
+          "ref": "s2"
+        },
+        {
+          "p": "A trilha mostra [cérebro gpt-6-sol] respondeu. O que aconteceu?",
+          "opcoes": [
+            "O Codex trocou de modelo sozinho no meio da conversa.",
+            "O pedido foi para o cérebro local.",
+            "O canal terminal escolheu o modelo pelo pedido.",
+            "Você rodou com MODELO=gpt-6-sol."
+          ],
+          "certa": 3,
+          "explica": "O modelo vem da variável <code>MODELO</code>. Sem ela, o padrão é o <code>gpt-6-luna</code>.",
+          "ref": "s5"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Caixa",
+          "texto": "A rotina: recebe, chama o cérebro, devolve."
+        },
+        {
+          "t": "Cérebro",
+          "texto": "O Codex da assinatura, ou o Ollama com CEREBRO=local."
+        },
+        {
+          "t": "Trilha",
+          "texto": "Cada linha entre colchetes é uma peça trabalhando."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "slug": "pasta",
+  "num": 5,
+  "menu": "Canal pasta",
+  "titulo": "Canal pasta: o robô que trabalha sem conversa",
+  "titulo_curto": "Canal pasta",
+  "minutos": 15,
+  "lead": "Nem todo pedido vem de uma pessoa conversando. Um sistema, uma planilha ou outro agente pode só deixar um arquivo numa pasta. O robô vigia a pasta, atende cada arquivo e grava o resultado. Ninguém espera resposta na tela.",
+  "objetivo": "deixar dois pedidos em entrada/, rodar o canal pasta e ver os resultados em feito/ com a entrada vazia.",
+  "competencias": [
+    "usar-canal-sem-interacao",
+    "ler-entrada-e-feito"
+  ],
+  "pecas": [
+    "canal",
+    "caixa"
+  ],
+  "aprende": [
+    {
+      "t": "Um canal sem pessoa do outro lado"
+    },
+    {
+      "t": "Entrada, feito: o pedido nunca é atendido duas vezes"
+    },
+    {
+      "t": "Quem pode deixar pedidos na pasta"
+    }
+  ],
+  "hero_alt": "Bandejas de papel de entrada e saída sobre uma mesa organizada de escritório.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "A pasta como canal",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "quem",
+          "titulo": "Alguém",
+          "sub": "pessoa ou sistema",
+          "icone": "robo",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "Pode ser você, um script, uma planilha exportada ou outro agente. Basta gravar um <code>.txt</code>."
+        },
+        {
+          "id": "entrada",
+          "titulo": "entrada/",
+          "sub": "um .txt por pedido",
+          "icone": "pasta",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "Cada arquivo é um pedido. O nome (<code>001-bom-dia.txt</code>) define a ordem."
+        },
+        {
+          "id": "robo",
+          "titulo": "Robô",
+          "sub": "vigia a cada 2 s",
+          "icone": "relogio",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "<code>canal_pasta.py</code> olha a pasta a cada 2 segundos. Com <code>--uma-vez</code>, atende o que tem e para."
+        },
+        {
+          "id": "caixa",
+          "titulo": "Caixa",
+          "sub": "a mesma",
+          "icone": "chip",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "A mesma caixa. Na trilha, o canal aparece com o nome do arquivo: <code>[canal pasta 001-bom-dia.txt]</code>."
+        },
+        {
+          "id": "feito",
+          "titulo": "feito/",
+          "sub": "pedido + resultado",
+          "icone": "check",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "O resultado é gravado em <code>feito/</code>, com o mesmo nome, e o pedido sai de <code>entrada/</code>."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "quem",
+          "para": "entrada",
+          "rot": "grava"
+        },
+        {
+          "de": "robo",
+          "para": "entrada",
+          "rot": "vigia"
+        },
+        {
+          "de": "robo",
+          "para": "caixa"
+        },
+        {
+          "de": "caixa",
+          "para": "feito",
+          "rot": "grava"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "quem",
+            "entrada"
+          ],
+          "ligar": [
+            "quem>entrada"
+          ],
+          "titulo": "Alguém deixa um pedido.",
+          "texto": "Um arquivo <code>.txt</code> com o pedido aparece em <code>entrada/</code>."
+        },
+        {
+          "acende": [
+            "robo",
+            "entrada",
+            "caixa"
+          ],
+          "ligar": [
+            "robo>entrada",
+            "robo>caixa"
+          ],
+          "titulo": "O robô atende.",
+          "texto": "Ele lê o arquivo e entrega o texto para a caixa, um arquivo por vez, em ordem de nome."
+        },
+        {
+          "acende": [
+            "caixa",
+            "feito"
+          ],
+          "ligar": [
+            "caixa>feito"
+          ],
+          "titulo": "O resultado fica guardado.",
+          "texto": "Pedido e resultado vão para <code>feito/</code>. A entrada fica vazia: nada é atendido duas vezes."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Dois pedidos, nenhuma conversa",
+      "sub": "O bloco grava dois pedidos e roda o robô uma vez.",
+      "blocos": [
+        {
+          "rot": "Terminal · o robô da pasta",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula5 && mkdir -p entrada\necho \"Escreva uma frase curta de bom dia para a equipe.\" > entrada/001-bom-dia.txt\necho \"Liste 3 frutas, uma por linha.\" > entrada/002-frutas.txt\npython3 canal_pasta.py --uma-vez\nls entrada; cat feito/002-frutas.txt"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>vigiando a pasta entrada/...\n[canal pasta 001-bom-dia.txt] Escreva uma frase curta de bom dia para a equipe.\n[cérebro gpt-6-luna] respondeu\n[pasta] feito/001-bom-dia.txt gravado\n[canal pasta 002-frutas.txt] Liste 3 frutas, uma por linha.\n[cérebro gpt-6-luna] respondeu\n[pasta] feito/002-frutas.txt gravado\nPEDIDO: Liste 3 frutas, uma por linha.\nRESULTADO: Maçã\nBanana\nLaranja</pre><p>O <code>ls entrada</code> não mostra nada: os dois pedidos saíram de lá. O texto das respostas muda a cada vez.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: o seu robô",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Rode o bloco",
+          "min": "5 min",
+          "texto": "Rode o bloco do robô da pasta.",
+          "pronto": "a saída tem duas linhas <code>[pasta] feito/… gravado</code> e o <code>ls entrada</code> sai vazio."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Robô ligado",
+          "min": "10 min",
+          "texto": "Rode <code>python3 canal_pasta.py</code> (sem <code>--uma-vez</code>). Em outro terminal, na pasta do kit, rode <code>echo \"Diga um provérbio curto\" > entrada/003-proverbio.txt</code>. Depois, Ctrl+C no primeiro.",
+          "pronto": "em até alguns segundos aparece <code>[pasta] feito/003-proverbio.txt gravado</code>, sem você digitar nada no terminal do robô."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "O que torna a pasta um canal \"sem interação\"?",
+          "opcoes": [
+            "Ninguém espera a resposta na tela: o resultado vai para feito/.",
+            "O robô não usa o cérebro: ele só copia o pedido para a pasta feito/.",
+            "A pasta só aceita pedidos de outros agentes.",
+            "O robô não escreve trilha."
+          ],
+          "certa": 0,
+          "explica": "O pedido chega como arquivo e o resultado sai como arquivo. Quem pediu lê depois, quando quiser.",
+          "ref": "s1"
+        },
+        {
+          "p": "Por que o robô apaga o arquivo de entrada/ depois de atender?",
+          "opcoes": [
+            "Para economizar espaço no disco.",
+            "Para o cérebro não ler o pedido de novo na memória.",
+            "Porque o Python não consegue ler o mesmo arquivo duas vezes seguidas.",
+            "Para o mesmo pedido não ser atendido de novo na próxima volta."
+          ],
+          "certa": 3,
+          "explica": "O robô olha a pasta a cada 2 s. Se o pedido ficasse lá, seria atendido de novo a cada volta.",
+          "ref": "s1"
+        },
+        {
+          "p": "Em que ordem o robô atende os arquivos?",
+          "opcoes": [
+            "Do mais novo para o mais velho.",
+            "Do menor para o maior.",
+            "Em ordem de nome: por isso 001, 002…",
+            "Em ordem aleatória, a cada volta."
+          ],
+          "certa": 2,
+          "explica": "O robô ordena os nomes. Um número na frente garante a ordem que você quer.",
+          "ref": "s1"
+        },
+        {
+          "p": "Quem pode mandar pedidos para o robô da pasta?",
+          "opcoes": [
+            "Só quem tem o token do Telegram.",
+            "Quem consegue gravar um arquivo naquela pasta.",
+            "Só o dono, porque a pasta tem senha e só ele sabe qual é.",
+            "Ninguém, até a aula 7."
+          ],
+          "certa": 1,
+          "explica": "A pasta é a porta. Quem grava nela, pede. Por isso a pasta do robô não pode ficar aberta para qualquer programa.",
+          "ref": "s1"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Pasta",
+          "texto": "Um canal sem conversa: arquivo entra, arquivo sai."
+        },
+        {
+          "t": "entrada/ e feito/",
+          "texto": "O pedido sai da entrada ao ser atendido."
+        },
+        {
+          "t": "Quem pede",
+          "texto": "Pessoa, script, planilha ou outro agente."
+        }
+      ]
+    }
+  ]
+}

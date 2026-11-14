@@ -71,6 +71,9 @@
         g.appendChild(tx);
       }
       svg.appendChild(g);
+      // rótulo maior que a seta reta (celular, vão curto) cobriria os nós: some; a legenda do passo explica
+      var rotulo = g.querySelector("text"), seg = g.querySelector("path").getTotalLength();
+      if (rotulo && !l.volta && rotulo.getBBox().width + 6 > seg) rotulo.style.display = "none";
     });
     marcar(fx);
   }

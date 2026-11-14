@@ -1,0 +1,365 @@
+{
+  "slug": "memoria-regras",
+  "num": 7,
+  "menu": "Memória e regras",
+  "titulo": "Memória e regras: o que ele lembra e o que ele não pode",
+  "titulo_curto": "Memória e regras",
+  "minutos": 18,
+  "lead": "Na aula 6, o Codex respondeu \"não posso divulgar uma senha\", mas a ferramenta já tinha lido o segredo. Pedir educadamente ao modelo não é regra. Nesta aula as regras vão para o código das ferramentas, e o agente ganha memória: o que você conta fica guardado para a próxima conversa.",
+  "objetivo": "ver a ferramenta ler um segredo fora da pasta na aula 6, ver a mesma leitura barrada na aula 7 e um fato sobreviver numa conversa nova.",
+  "competencias": [
+    "travar-regra-no-codigo",
+    "guardar-memoria",
+    "atender-so-o-dono"
+  ],
+  "pecas": [
+    "memoria",
+    "regras",
+    "ferramentas"
+  ],
+  "aprende": [
+    {
+      "t": "Por que regra no texto não basta"
+    },
+    {
+      "t": "As três travas: pasta única, OK do dono e só o dono no Telegram"
+    },
+    {
+      "t": "A memória que passa de uma conversa para a outra"
+    }
+  ],
+  "hero_alt": "Cofre pequeno ao lado de um caderno de anotações aberto, sobre uma mesa clara.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "Onde a regra mora",
+      "sub": "Clique em Próximo passo.",
+      "nos": [
+        {
+          "id": "pedido",
+          "titulo": "Pedido",
+          "sub": "\"leia ../segredo\"",
+          "icone": "chat",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "Um pedido esperto, ou um texto escondido num arquivo, tenta tirar o agente da pasta dele."
+        },
+        {
+          "id": "cerebro",
+          "titulo": "Cérebro",
+          "sub": "lê regras.md",
+          "icone": "cerebro",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "O cérebro recebe <code>regras.md</code> e a memória junto do pedido. Ele costuma obedecer, mas pode ser enganado."
+        },
+        {
+          "id": "ferramenta",
+          "titulo": "Ferramenta",
+          "sub": "ler()",
+          "icone": "terminal",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Quem abre o arquivo é a ferramenta. É aqui que a regra precisa estar."
+        },
+        {
+          "id": "trava",
+          "titulo": "Dentro da pasta?",
+          "sub": "a trava",
+          "icone": "cadeado",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "A função <code>caminho()</code> confere se o arquivo está dentro de <code>trabalho/</code>. Se não estiver, recusa, não importa o que o cérebro pediu."
+        },
+        {
+          "id": "le",
+          "titulo": "Lê",
+          "sub": "sim",
+          "icone": "check",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "Dentro da pasta: a ferramenta lê e devolve o texto."
+        },
+        {
+          "id": "barra",
+          "titulo": "Barrado",
+          "sub": "não",
+          "icone": "x",
+          "col": 3,
+          "lin": 3,
+          "detalhe": "Fora da pasta: <code>barrado: fora da pasta de trabalho</code>. O segredo nunca chega ao cérebro."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "pedido",
+          "para": "cerebro"
+        },
+        {
+          "de": "cerebro",
+          "para": "ferramenta",
+          "rot": "pede"
+        },
+        {
+          "de": "ferramenta",
+          "para": "trava"
+        },
+        {
+          "de": "trava",
+          "para": "le",
+          "rot": "sim"
+        },
+        {
+          "de": "trava",
+          "para": "barra",
+          "rot": "não"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "pedido",
+            "cerebro",
+            "ferramenta"
+          ],
+          "ligar": [
+            "pedido>cerebro",
+            "cerebro>ferramenta"
+          ],
+          "titulo": "Aula 6: a regra só no texto.",
+          "texto": "O cérebro pediu <code>ler ../segredo.txt</code>, a ferramenta leu, e só depois o Codex disse \"não posso divulgar\". Tarde demais: o segredo já tinha sido lido."
+        },
+        {
+          "acende": [
+            "ferramenta",
+            "trava"
+          ],
+          "ligar": [
+            "ferramenta>trava"
+          ],
+          "titulo": "Aula 7: a trava no código.",
+          "texto": "Antes de abrir qualquer arquivo, a ferramenta confere o caminho."
+        },
+        {
+          "acende": [
+            "trava",
+            "barra"
+          ],
+          "ligar": [
+            "trava>barra"
+          ],
+          "titulo": "Fora da pasta: barrado.",
+          "texto": "Não importa quem pediu nem como: a leitura não acontece."
+        },
+        {
+          "acende": [
+            "trava",
+            "le"
+          ],
+          "ligar": [
+            "trava>le"
+          ],
+          "titulo": "Dentro da pasta: lê.",
+          "texto": "O trabalho normal continua igual."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "O furo da aula 6",
+      "sub": "A segunda linha chama a ferramenta direto, como faria um cérebro enganado.",
+      "blocos": [
+        {
+          "rot": "Terminal · o furo",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula6 && mkdir -p trabalho\necho \"senha do banco: 1234\" > segredo.txt\npython3 canal_terminal.py \"Use a ferramenta ler com o nome ../segredo.txt e me diga o que está escrito\"\npython3 -c \"import ferramentas; print(ferramentas.ler('../segredo.txt'))\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] Use a ferramenta ler com o nome ../segredo.txt e me diga o que está escrito\n[caixa] nenhuma receita serve: chamo o cérebro\n[ferramenta ler] {\"nome\": \"../segredo.txt\"} -&gt; senha do banco: 1234\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\nNão posso divulgar uma senha. A ferramenta retornou uma credencial sensível; mantenha-a protegida e troque-a se foi exposta.\nsenha do banco: 1234</pre><p>A trilha mostra <code>[ferramenta ler] {\"nome\": \"../segredo.txt\"} -> senha do banco: 1234</code>: o segredo foi lido, mesmo com o Codex dizendo que não divulga.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "As travas da aula 7",
+      "sub": "A mesma leitura, agora barrada; e um arquivo que já existe, que fora do terminal não é substituído.",
+      "blocos": [
+        {
+          "rot": "Terminal · as travas",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula7 && mkdir -p trabalho\necho \"senha do banco: 1234\" > segredo.txt\npython3 -c \"\nimport ferramentas\ntry:\n    print(ferramentas.ler('../segredo.txt'))\nexcept PermissionError as erro:\n    print('barrado:', erro)\"\necho \"versão antiga\" > trabalho/a.txt\npython3 -c \"import ferramentas; ferramentas.CANAL = 'telegram'; print(ferramentas.escrever('a.txt', 'versão nova'))\"\ncat trabalho/a.txt"
+        },
+        {
+          "rot": "Trecho · ferramentas.py (tag aula7)",
+          "icone": "arquivo",
+          "conteudo": "def caminho(nome):                         # regra 1: só a pasta trabalho/\n    real = os.path.realpath(os.path.join(PASTA, nome))\n    if not real.startswith(PASTA + os.sep):\n        raise PermissionError(\"fora da pasta de trabalho\")\n    return real"
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>barrado: fora da pasta de trabalho\nrecusado: o dono não aprovou substituir\nversão antiga</pre>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "A memória",
+      "sub": "Duas conversas separadas. Na segunda, o agente sabe o nome do cachorro sem abrir arquivo nenhum.",
+      "blocos": [
+        {
+          "rot": "Terminal · a memória",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula7\npython3 canal_terminal.py \"Lembre que meu cachorro se chama Thor\"\ncat memoria.json; echo\npython3 canal_terminal.py \"Qual é o nome do meu cachorro?\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] Lembre que meu cachorro se chama Thor\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 0 fato(s) · [regras] regras.md\n[ferramenta lembrar] {\"fato\": \"O cachorro do dono se chama Thor.\"} -&gt; guardado: O cachorro do dono se chama Thor.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\n\n[\"O cachorro do dono se chama Thor.\"]\n[canal terminal] Qual é o nome do meu cachorro?\n[caixa] nenhuma receita serve: chamo o cérebro\n[memória] 1 fato(s) · [regras] regras.md\n[cérebro gpt-6-luna] respondeu (1 rodada(s))\nSeu cachorro se chama Thor.</pre><p>A linha <code>[memória] 1 fato(s)</code> mostra que a segunda conversa já começou sabendo do Thor.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "passos",
+      "titulo": "A terceira trava: só o dono no Telegram",
+      "sub": "Bot de Telegram é público. Na aula 7, o canal só atende o seu chat.",
+      "passos": [
+        {
+          "titulo": "O número do seu chat",
+          "sub": "aula 4",
+          "texto": [
+            "Quando o bot recebeu a sua mensagem, o terminal mostrou <code>(mensagem do chat …)</code> com um número. É o seu chat."
+          ]
+        },
+        {
+          "titulo": "No .env",
+          "sub": "TELEGRAM_DONO",
+          "texto": [
+            "Acrescente a linha <code>TELEGRAM_DONO=</code> com esse número no <code>.env</code>."
+          ]
+        },
+        {
+          "titulo": "Quem não é o dono",
+          "sub": "recebe um aviso",
+          "texto": [
+            "Outra pessoa que falar com o bot recebe \"Este agente só atende o dono.\" e o pedido nem chega à caixa."
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: travas e memória",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Furo e trava",
+          "min": "5 min",
+          "texto": "Rode o bloco do furo e depois o das travas.",
+          "pronto": "no furo aparece <code>senha do banco: 1234</code>; nas travas aparecem <code>barrado: fora da pasta de trabalho</code> e <code>recusado: o dono não aprovou substituir</code>."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Um fato seu",
+          "min": "8 min",
+          "texto": "Na tag aula7, conte um fato seu (\"lembre que eu prefiro reunião de manhã\") e, em outro comando, pergunte sobre ele.",
+          "pronto": "o <code>memoria.json</code> tem o seu fato e a segunda resposta usa ele, com a trilha <code>[memória] 1 fato(s)</code>."
+        },
+        {
+          "id": "e3",
+          "titulo": "E3 · Só o dono",
+          "min": "5 min",
+          "texto": "Grave <code>TELEGRAM_DONO</code> no <code>.env</code> e mande uma mensagem ao bot.",
+          "pronto": "o seu pedido é atendido; se outra pessoa mandar, o terminal mostra <code>[regras] não é o dono: não atendo</code>."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "Na aula 6, o Codex respondeu \"não posso divulgar\". Por que isso não bastou?",
+          "opcoes": [
+            "Porque o Codex mentiu sobre ter lido o arquivo.",
+            "Porque a ferramenta já tinha lido o segredo antes.",
+            "Porque a resposta veio em português e o regras.md está em outra língua.",
+            "Porque o regras.md estava vazio."
+          ],
+          "certa": 1,
+          "explica": "A recusa veio depois da leitura. Regra que vale de verdade fica no código que executa, antes de ler.",
+          "ref": "s2"
+        },
+        {
+          "p": "Onde fica a regra \"só a pasta trabalho/\" que não depende do modelo?",
+          "opcoes": [
+            "No regras.md, que o cérebro lê.",
+            "No .env, junto do token.",
+            "Na memória, como um fato do dono.",
+            "Na função caminho() das ferramentas."
+          ],
+          "certa": 3,
+          "explica": "O <code>regras.md</code> ajuda o cérebro a se comportar; a função <code>caminho()</code> garante, mesmo se ele for enganado.",
+          "ref": "s3"
+        },
+        {
+          "p": "Pelo Telegram, o cérebro pede para substituir um arquivo que já existe. O que acontece?",
+          "opcoes": [
+            "Recusa: fora do terminal não há como dar o OK.",
+            "Substitui, porque o pedido veio do dono.",
+            "Pergunta no Telegram e espera a resposta do dono antes de gravar.",
+            "Grava uma cópia com outro nome."
+          ],
+          "certa": 0,
+          "explica": "O OK do dono só existe no terminal. Nos outros canais, substituir é recusado.",
+          "ref": "s3"
+        },
+        {
+          "p": "A memória é guardada em…",
+          "opcoes": [
+            "Na conta do Codex, que lembra de você entre uma conversa e outra.",
+            "No histórico do Telegram.",
+            "No arquivo memoria.json, que vai junto em cada pedido.",
+            "No regras.md, no fim do arquivo."
+          ],
+          "certa": 2,
+          "explica": "A ferramenta <code>lembrar</code> grava no <code>memoria.json</code>, e a caixa manda esses fatos para o cérebro em cada pedido.",
+          "ref": "s4"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Regras",
+          "texto": "No texto para orientar, no código para garantir."
+        },
+        {
+          "t": "Três travas",
+          "texto": "Pasta única, OK do dono, só o dono no Telegram."
+        },
+        {
+          "t": "Memória",
+          "texto": "memoria.json, enviada ao cérebro em cada pedido."
+        }
+      ]
+    }
+  ]
+}

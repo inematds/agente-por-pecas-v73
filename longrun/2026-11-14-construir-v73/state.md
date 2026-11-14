@@ -14,3 +14,11 @@
 ## Próximo
 1. capturar.sh do curso (clone fresco por bloco, HOME de bancada, insteadOf para o repo local até o push).
 2. skill formato-curso-v73 (mapa de peças + seção fluxo + validador) e 1 aula para o Nei ver.
+
+## Atualização 14/11 (noite)
+- Nei: cérebro = Codex da assinatura (gpt-6-luna); Ollama vira módulo à parte (cerebro_local.py, CEREBRO=local), sem captura (modelo local não aprovado).
+- Kit no GitHub: inematds/agente-por-pecas-kit (main + tags aula1–aula8). Captura do GitHub real = idêntica à local.
+- Capturas reais em captura/saidas (Codex): Telegram respondeu /start e "oi" do Nei.
+- Skill ~/.claude/skills/formato-curso-v73 (motor 7.16.23): seção fluxo (grade + setas, voltas dir/esq/baixo/cima, passos), mapa das peças no topo da aula e na inicial, validar com fluxo obrigatório, pecas e teto de 1400 palavras; resolver-kit lê o kit pela tag (git show).
+- Amostra para o Nei: página inicial + aula 6 (receitas-ferramentas). Aulas com marcadores guardadas em scratchpad/aulas-marcadores.
+- Próximo: ouvir o Nei sobre a amostra → escrever aulas 1–5, 7, 8 → imagens (Codex image_gen) → portão → revisor → push → portal/Telegram/vídeo.

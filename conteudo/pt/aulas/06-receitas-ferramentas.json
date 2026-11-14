@@ -282,7 +282,7 @@
             "O cérebro lê as receitas e escolhe a que serve melhor.",
             "A receita anotar-na-lista faz o passo a passo, sem chamar o cérebro.",
             "A caixa chama o cérebro e depois confere com a receita.",
-            "A ferramenta ler abre a lista e o cérebro acrescenta o café."
+            "A ferramenta ler abre a lista e o cérebro acrescenta o café no final dela."
           ],
           "certa": 1,
           "explica": "O pedido casa com <code>adicione * na lista</code>, então a receita faz tudo. O cérebro nem é chamado: por isso é rápido e sai igual toda vez.",
@@ -303,8 +303,8 @@
         {
           "p": "Por que vale a pena ter receita para um pedido que o cérebro também saberia fazer?",
           "opcoes": [
-            "Porque a receita sai igual toda vez, na hora e sem gastar o cérebro.",
-            "Porque o cérebro não consegue gravar arquivos.",
+            "Porque a receita sai igual toda vez, na hora e sem cérebro.",
+            "Porque o cérebro não consegue gravar arquivos sem uma receita pronta.",
             "Porque o Codex recusa pedidos curtos demais.",
             "Porque a receita aprende sozinha com o tempo."
           ],
