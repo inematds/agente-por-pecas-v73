@@ -1,0 +1,322 @@
+{
+  "id": "agente-por-pecas-v73",
+  "lang": "pt-BR",
+  "url": "https://inematds.github.io/agente-por-pecas-v73/",
+  "nome": "Agente por peças",
+  "sub": "Canal, caixa, cérebro e verificador",
+  "volta": {
+    "t": "INEMA.CLUB · todos os cursos",
+    "href": "https://inema.club/"
+  },
+  "lado_card": {
+    "rot": "Kit do curso",
+    "t": "Uma peça por arquivo",
+    "texto": "O agente inteiro, com uma tag por aula (aula2 … aula8) e testes que rodam sem modelo.",
+    "link": "Abrir o kit no GitHub",
+    "href": "https://github.com/inematds/agente-por-pecas-kit"
+  },
+  "rodape": "INEMA.CLUB · conteúdo aberto e gratuito · formato INEMA Learning v7.3 · <a href=\"https://inema.club/\">inema.club</a> · <a href=\"https://github.com/inematds/agente-por-pecas-kit\">kit do curso</a> · <a href=\"https://inematds.github.io/agentes-do-zero-v72/\">curso anterior: Sistema de agentes do zero</a>",
+  "videos": {},
+  "inicio": {
+    "kicker": "Curso · 8 aulas · uma peça por aula",
+    "titulo": "Monte o seu agente peça por peça: ele atende no Telegram e só diz pronto depois de conferir",
+    "lead": "Você usa IA no chat, mas ela não recebe pedido sozinha, não faz a tarefa e não confere o que fez. Aqui você monta um agente de verdade, peça por peça: o canal por onde o pedido chega, a caixa que decide, o cérebro (o Codex da sua assinatura), as receitas e ferramentas que fazem, e o verificador que confere antes de dizer pronto.",
+    "cta": "Começar pela aula 1",
+    "cta2": {
+      "t": "Ver o kit no GitHub",
+      "href": "https://github.com/inematds/agente-por-pecas-kit"
+    },
+    "capa_alt": "Agente por peças: canal, caixa, cérebro, receitas, ferramentas, memória, regras e verificador.",
+    "numeros": [
+      {
+        "v": "9",
+        "t": "peças, uma por arquivo"
+      },
+      {
+        "v": "4",
+        "t": "canais: terminal, chat, Telegram e pasta"
+      },
+      {
+        "v": "0",
+        "t": "chave de API: o cérebro é a sua assinatura"
+      },
+      {
+        "v": "3",
+        "t": "tentativas antes de cancelar"
+      }
+    ],
+    "aulas_titulo": "As aulas",
+    "aulas_sub": "Cada aula acende uma parte do mapa. No kit, cada aula é uma tag: git checkout aula2, aula3…",
+    "blocos": [
+      {
+        "t": "Para quem é",
+        "itens": [
+          "Quem já usa o ChatGPT ou o Claude e quer saber o que tem dentro de um agente.",
+          "Quem sabe abrir o terminal e colar um comando (não precisa saber programar).",
+          "Quem tem a assinatura do ChatGPT (o Codex usa ela, sem chave de API)."
+        ]
+      },
+      {
+        "t": "O que você sai fazendo",
+        "itens": [
+          "Um agente que atende pelo chat, pelo Telegram e por uma pasta, sem ninguém conversando.",
+          "Receitas que fazem o pedido exato sem gastar o cérebro.",
+          "Um verificador que confere o resultado e cancela depois de 3 tentativas."
+        ]
+      }
+    ]
+  },
+  "ui": {
+    "pular": "Pular para o conteúdo",
+    "aulas": "Aulas",
+    "concluido": "concluído",
+    "aula": "Aula",
+    "nesta_aula": "Nesta aula, você vai aprender:",
+    "objetivo": "Objetivo:",
+    "proxima_aula": "Próxima aula",
+    "aula_anterior": "Aula anterior",
+    "voltar_inicio": "Voltar ao início do curso",
+    "marcar_concluida": "Marcar aula como concluída",
+    "dg_dica": "Clique em cada bloco do diagrama para ver o que ele faz.",
+    "copiar": "Copiar",
+    "copiado": "Copiado",
+    "selo_simulacao": "Simulação: exemplo ilustrativo",
+    "selo_real": "Exemplo do repositório",
+    "pronto_quando": "Pronto quando:",
+    "fiz": "Fiz este exercício",
+    "video_pagina": "Página do vídeo com roteiro",
+    "pergunta": "Pergunta",
+    "de": "de",
+    "cert_tag": "competência",
+    "correto": "Correto",
+    "errado": "Não é essa",
+    "quiz_aguarda": "Escolha uma alternativa. A explicação aparece depois da sua tentativa.",
+    "proxima_pergunta": "Próxima pergunta",
+    "quiz_ver": "Ver resultado",
+    "quiz_fim": "Teste concluído",
+    "quiz_total": "Você acertou {a} de {n}. Acertando todas, a aula é marcada como concluída.",
+    "aparencia": "Aparência",
+    "tamanho_texto": "Tamanho do texto",
+    "tema": "Tema",
+    "tema_escuro": "Escuro",
+    "tema_papel": "Papel claro",
+    "role_dica": "Role a página: cada etapa abaixo acende a sua parte do diagrama.",
+    "pre_requisito": "requer",
+    "ver_aula": "Ver a aula",
+    "mapa_dica": "Clique num exercício para ver o que fazer e o \"pronto quando\".",
+    "etapas": "Etapas",
+    "exercicios": "exercícios",
+    "rever": "Rever:",
+    "revisar_erradas": "Revisar as erradas",
+    "refazer": "Refazer o teste",
+    "h_semana": "h por semana",
+    "data_inicio": "Data de início",
+    "ritmo": "Tempo disponível",
+    "gerar_plano": "Gerar meu plano",
+    "baixar_md": "Baixar plano.md",
+    "baixar_ics": "Baixar para o calendário (.ics)",
+    "ind_estudo": "Estudo (aulas)",
+    "ind_pratica": "Prática declarada",
+    "ind_nota": "Prática = exercícios que você marcou como feitos. A comprovação vem na prova da certificação.",
+    "estudo": {
+      "titulo": "Seu estudo",
+      "continuar": "Continuar de onde parei",
+      "comecar": "Começar pela aula 1",
+      "cta_continuar": "Continuar a aula {n}",
+      "hoje": "hoje",
+      "ontem": "ontem",
+      "ha_dias": "há {n} dias",
+      "desempenho": "Desempenho nos testes",
+      "notas": "Minhas anotações",
+      "dados": "Copiar meus dados",
+      "sem_testes": "Nenhum teste feito ainda. O teste fica no fim de cada aula.",
+      "nao_fez": "teste ainda não feito",
+      "ultimo": "Último",
+      "melhor": "Melhor",
+      "tentativas": "tentativas",
+      "tentativa": "tentativa",
+      "tudo_certo": "Acertou tudo no último teste.",
+      "rever": "Para rever",
+      "resposta": "Resposta certa:",
+      "ir_teste": "Refazer o teste",
+      "sem_notas": "Nenhuma anotação ainda. Na aula, selecione um trecho do texto e toque em Marcar ou Anotar.",
+      "so_marcado": "(só marcado)",
+      "marcar": "Marcar",
+      "anotar": "Anotar",
+      "salvar": "Salvar",
+      "apagar": "Apagar marca",
+      "fechar": "Fechar",
+      "nota_ph": "Escreva sua anotação sobre este trecho…",
+      "um_bloco": "Marque dentro de um parágrafo só.",
+      "nao_marca": "Este trecho não pode ser marcado.",
+      "dados_exp": "Seu progresso, suas anotações e as notas dos testes ficam só neste navegador. Baixe uma cópia (.json) para guardar ou para continuar em outro computador ou navegador; lá, carregue a cópia. Carregar soma com o que já existe e não apaga nada.",
+      "exportar": "Baixar cópia",
+      "importar": "Carregar cópia",
+      "import_ok": "Cópia carregada ({n} itens). Atualizando a página…",
+      "import_erro": "Arquivo não reconhecido. Nada foi alterado.",
+      "import_outro": "Esta cópia é de outro curso. Nada foi alterado.",
+      "export_ok": "Cópia baixada."
+    },
+    "conv_dica": "Escolha a sua resposta. O comentário aparece logo depois e a conversa segue conforme a escolha.",
+    "conv_voce": "Você",
+    "conv_escolha": "Sua resposta",
+    "conv_boa": "Boa escolha",
+    "conv_meio": "Dá para melhorar",
+    "conv_ruim": "Escolha fraca",
+    "conv_fim": "Fim da conversa",
+    "conv_placar": "Você fez {p} de {m} pontos possíveis.",
+    "conv_licao": "Lição:",
+    "conv_recomecar": "Recomeçar a conversa",
+    "conv_feita": "Seu melhor placar: {p} de {m} pontos.",
+    "fx_ant": "Anterior",
+    "fx_prox": "Próximo passo"
+  },
+  "icone": "robo",
+  "mapa": {
+    "titulo": "O mapa das peças",
+    "sub": "Este é o agente inteiro. Clique numa peça para ver o que ela faz e em que aula ela entra.",
+    "aqui": "Você está aqui",
+    "aqui_sub": "as peças acesas são as desta aula",
+    "nos": [
+      {
+        "id": "canal",
+        "titulo": "Canal",
+        "sub": "por onde chega",
+        "icone": "chat",
+        "col": 1,
+        "lin": 1,
+        "detalhe": "Por onde o pedido chega: o terminal, um chat numa página web, o Telegram, ou um arquivo numa pasta, sem ninguém conversando."
+      },
+      {
+        "id": "caixa",
+        "titulo": "Caixa",
+        "sub": "a rotina",
+        "icone": "chip",
+        "col": 2,
+        "lin": 1,
+        "detalhe": "A máquina com a rotina (o programa) que recebe o pedido de qualquer canal e decide quem faz: a receita ou o cérebro. Arquivo <code>caixa.py</code>."
+      },
+      {
+        "id": "receita",
+        "titulo": "Receita",
+        "sub": "pedido exato",
+        "icone": "lista",
+        "col": 3,
+        "lin": 1,
+        "detalhe": "O passo a passo para o pedido exato, sem cérebro (é o RPA). Rápido, igual toda vez e de graça. Arquivos em <code>receitas/</code>."
+      },
+      {
+        "id": "regras",
+        "titulo": "Regras",
+        "sub": "o que não pode",
+        "icone": "cadeado",
+        "col": 1,
+        "lin": 2,
+        "detalhe": "Os limites do trabalho. Escritos em <code>regras.md</code> para o cérebro ler, e travados no código das ferramentas, que não esquece."
+      },
+      {
+        "id": "cerebro",
+        "titulo": "Cérebro",
+        "sub": "o modelo",
+        "icone": "cerebro",
+        "col": 2,
+        "lin": 2,
+        "detalhe": "O modelo que pensa: o Codex da sua assinatura, ou um modelo local no Ollama. Ele não executa nada: só decide e pede. Arquivo <code>cerebro.py</code>."
+      },
+      {
+        "id": "ferramentas",
+        "titulo": "Ferramentas",
+        "sub": "o que faz",
+        "icone": "terminal",
+        "col": 3,
+        "lin": 2,
+        "detalhe": "O que o agente consegue fazer no mundo: ler, gravar, anotar, lembrar. Quem executa é a caixa. Arquivo <code>ferramentas.py</code>."
+      },
+      {
+        "id": "memoria",
+        "titulo": "Memória",
+        "sub": "o que lembra",
+        "icone": "memoria",
+        "col": 1,
+        "lin": 3,
+        "detalhe": "O que o agente sabe de você e guarda de uma conversa para a outra. Arquivo <code>memoria.json</code>."
+      },
+      {
+        "id": "verificador",
+        "titulo": "Verificador",
+        "sub": "confere",
+        "icone": "lupa",
+        "col": 2,
+        "lin": 3,
+        "detalhe": "Confere o resultado contra o pedido. Com um exemplo concreto, o código confere e acerta sempre; sem exemplo, outro cérebro faz de juiz. Arquivo <code>verificador.py</code>."
+      },
+      {
+        "id": "resultado",
+        "titulo": "Resultado",
+        "sub": "resposta ou ação",
+        "icone": "alvo",
+        "col": 3,
+        "lin": 3,
+        "detalhe": "O que sai: uma resposta, uma ação (um arquivo gravado, uma anotação) ou o aviso de que cancelou depois de 3 tentativas."
+      }
+    ],
+    "ligacoes": [
+      {
+        "de": "canal",
+        "para": "caixa"
+      },
+      {
+        "de": "caixa",
+        "para": "receita",
+        "rot": "exato"
+      },
+      {
+        "de": "caixa",
+        "para": "cerebro",
+        "rot": "aberto"
+      },
+      {
+        "de": "receita",
+        "para": "ferramentas",
+        "rot": "usa"
+      },
+      {
+        "de": "cerebro",
+        "para": "ferramentas",
+        "rot": "pede"
+      },
+      {
+        "de": "regras",
+        "para": "cerebro"
+      },
+      {
+        "de": "memoria",
+        "para": "cerebro"
+      },
+      {
+        "de": "cerebro",
+        "para": "verificador"
+      },
+      {
+        "de": "verificador",
+        "para": "resultado",
+        "rot": "ok"
+      },
+      {
+        "de": "verificador",
+        "para": "cerebro",
+        "rot": "de novo",
+        "volta": "dir"
+      },
+      {
+        "de": "receita",
+        "para": "resultado",
+        "volta": "dir"
+      }
+    ]
+  },
+  "kit": {
+    "repo": "https://github.com/inematds/agente-por-pecas-kit",
+    "local": "~/projetos/agente-por-pecas-kit"
+  }
+}

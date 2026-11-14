@@ -1,0 +1,348 @@
+{
+  "slug": "receitas-ferramentas",
+  "num": 6,
+  "menu": "Receitas e ferramentas",
+  "titulo": "Receita ou cérebro: o pedido exato não precisa de IA",
+  "titulo_curto": "Receitas e ferramentas",
+  "minutos": 15,
+  "lead": "Nem todo pedido precisa do cérebro. \"Adicione pão na lista\" é sempre igual: uma receita faz, na hora, de graça e sem errar. O cérebro fica para o pedido aberto, e aí ele pede ferramentas para agir. Nesta aula a caixa aprende a escolher.",
+  "objetivo": "ver a caixa mandar o pedido exato para a receita, sem cérebro, e o pedido aberto para o cérebro, que pede a ferramenta ler.",
+  "competencias": [
+    "separar-exato-de-aberto",
+    "escrever-receita",
+    "ler-pedido-de-ferramenta"
+  ],
+  "pecas": [
+    "caixa",
+    "receita",
+    "cerebro",
+    "ferramentas"
+  ],
+  "aprende": [
+    {
+      "t": "Quando o pedido vai para a receita e quando vai para o cérebro"
+    },
+    {
+      "t": "Escrever uma receita em três linhas"
+    },
+    {
+      "t": "O cérebro pede, a caixa executa a ferramenta"
+    }
+  ],
+  "hero_alt": "Caderno de receitas aberto ao lado de uma caixa de ferramentas organizada.",
+  "secoes": [
+    {
+      "tipo": "fluxo",
+      "titulo": "A caixa escolhe quem faz",
+      "sub": "Clique em Próximo passo e acompanhe o pedido.",
+      "nos": [
+        {
+          "id": "pedido",
+          "titulo": "Pedido",
+          "sub": "de um canal",
+          "icone": "chat",
+          "col": 1,
+          "lin": 1,
+          "detalhe": "O pedido chega de qualquer canal: terminal, chat, Telegram ou pasta. Para a caixa, é só um texto."
+        },
+        {
+          "id": "exato",
+          "titulo": "É exato?",
+          "sub": "tem receita?",
+          "icone": "lupa",
+          "col": 2,
+          "lin": 1,
+          "detalhe": "A caixa compara o pedido com a linha <code>quando:</code> de cada receita. O <code>*</code> é a parte que muda."
+        },
+        {
+          "id": "receita",
+          "titulo": "Receita",
+          "sub": "sem cérebro",
+          "icone": "lista",
+          "col": 3,
+          "lin": 1,
+          "detalhe": "Achou: a receita faz o passo a passo dela. O cérebro nem acorda."
+        },
+        {
+          "id": "cerebro",
+          "titulo": "Cérebro",
+          "sub": "decide",
+          "icone": "cerebro",
+          "col": 2,
+          "lin": 2,
+          "detalhe": "Não achou receita: o pedido vai para o Codex, que decide o próximo passo. Ele não executa nada."
+        },
+        {
+          "id": "ferramenta",
+          "titulo": "Ferramenta",
+          "sub": "a caixa executa",
+          "icone": "terminal",
+          "col": 3,
+          "lin": 2,
+          "detalhe": "O cérebro devolve um pedido de ferramenta (<code>{\"ferramenta\": \"ler\", ...}</code>). Quem lê o arquivo é a caixa, e o que ela leu volta para o cérebro."
+        },
+        {
+          "id": "resposta",
+          "titulo": "Resposta",
+          "sub": "volta ao canal",
+          "icone": "alvo",
+          "col": 2,
+          "lin": 3,
+          "detalhe": "A resposta volta pelo mesmo canal por onde o pedido chegou."
+        }
+      ],
+      "ligacoes": [
+        {
+          "de": "pedido",
+          "para": "exato"
+        },
+        {
+          "de": "exato",
+          "para": "receita",
+          "rot": "sim"
+        },
+        {
+          "de": "exato",
+          "para": "cerebro",
+          "rot": "não"
+        },
+        {
+          "de": "cerebro",
+          "para": "ferramenta",
+          "rot": "pede"
+        },
+        {
+          "de": "ferramenta",
+          "para": "cerebro",
+          "rot": "devolve",
+          "volta": "baixo"
+        },
+        {
+          "de": "cerebro",
+          "para": "resposta",
+          "rot": "responde"
+        },
+        {
+          "de": "receita",
+          "para": "resposta",
+          "volta": "dir"
+        }
+      ],
+      "passos": [
+        {
+          "acende": [
+            "pedido",
+            "exato"
+          ],
+          "ligar": [
+            "pedido>exato"
+          ],
+          "titulo": "O pedido chega.",
+          "texto": "\"Adicione pão integral na lista.\" A caixa procura uma receita cujo <code>quando:</code> case com ele."
+        },
+        {
+          "acende": [
+            "exato",
+            "receita",
+            "resposta"
+          ],
+          "ligar": [
+            "exato>receita",
+            "receita>resposta"
+          ],
+          "titulo": "Exato: receita.",
+          "texto": "Casou com <code>adicione * na lista</code>. A receita anota e responde \"Anotei pão integral na lista.\" Zero chamada ao cérebro."
+        },
+        {
+          "acende": [
+            "pedido",
+            "exato",
+            "cerebro"
+          ],
+          "ligar": [
+            "pedido>exato",
+            "exato>cerebro"
+          ],
+          "titulo": "Aberto: cérebro.",
+          "texto": "\"Leia notas.txt e diga o que tenho que levar.\" Nenhuma receita serve, então a caixa chama o cérebro."
+        },
+        {
+          "acende": [
+            "cerebro",
+            "ferramenta"
+          ],
+          "ligar": [
+            "cerebro>ferramenta",
+            "ferramenta>cerebro"
+          ],
+          "titulo": "Ele pede, a caixa faz.",
+          "texto": "O cérebro pede a ferramenta <code>ler</code> com <code>notas.txt</code>. A caixa lê e devolve o texto. Isso é uma rodada."
+        },
+        {
+          "acende": [
+            "cerebro",
+            "resposta"
+          ],
+          "ligar": [
+            "cerebro>resposta"
+          ],
+          "titulo": "Responde.",
+          "texto": "Com o texto do arquivo, o cérebro escreve a resposta. Duas rodadas no total."
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Uma receita tem três linhas",
+      "sub": "Cada receita é um arquivo .txt em receitas/. Para criar outra, copie e mude as três linhas.",
+      "blocos": [
+        {
+          "rot": "Arquivo · receitas/anotar-na-lista.txt (tag aula6)",
+          "icone": "arquivo",
+          "conteudo": "quando: adicione * na lista\nfaça: acrescentar lista.txt *\nresponda: Anotei * na lista."
+        },
+        {
+          "rot": "Arquivo · receitas/ver-a-lista.txt (tag aula6)",
+          "icone": "arquivo",
+          "conteudo": "quando: o que tem na lista\nfaça: ler lista.txt\nresponda: Na lista: {resultado}"
+        }
+      ]
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Rode as receitas",
+      "sub": "Três pedidos exatos. Repare na linha [receita …] sem cérebro.",
+      "blocos": [
+        {
+          "rot": "Terminal · as receitas",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula6\npython3 canal_terminal.py \"Adicione pão integral na lista\"\npython3 canal_terminal.py \"adicione café na lista\"\npython3 canal_terminal.py \"O que tem na lista?\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] Adicione pão integral na lista\n[receita anotar-na-lista.txt] sem cérebro\nAnotei pão integral na lista.\n[canal terminal] adicione café na lista\n[receita anotar-na-lista.txt] sem cérebro\nAnotei café na lista.\n[canal terminal] O que tem na lista?\n[receita ver-a-lista.txt] sem cérebro\nNa lista: pão integral, café</pre>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "codigo",
+      "titulo": "Agora um pedido aberto",
+      "sub": "Nenhuma receita serve: entra o cérebro, que pede a ferramenta ler.",
+      "blocos": [
+        {
+          "rot": "Terminal · cérebro com ferramenta",
+          "icone": "terminal",
+          "conteudo": "cd ~/agente-por-pecas-kit && git checkout -q aula6 && mkdir -p trabalho\necho \"Reunião com o fornecedor na sexta às 15h. Levar o contrato.\" > trabalho/notas.txt\npython3 canal_terminal.py \"Leia notas.txt e diga em uma frase o que tenho que levar\""
+        }
+      ],
+      "saida": {
+        "selo": "real",
+        "abas": [
+          {
+            "rot": "Saída capturada (14/11/2026)",
+            "html": "<pre>[canal terminal] Leia notas.txt e diga em uma frase o que tenho que levar\n[caixa] nenhuma receita serve: chamo o cérebro\n[ferramenta ler] {\"nome\": \"notas.txt\"} -&gt; Reunião com o fornecedor na sexta às 15h. Levar o contrato.\n[cérebro gpt-6-luna] respondeu (2 rodada(s))\nVocê tem que levar o contrato para a reunião com o fornecedor na sexta às 15h.</pre><p>A frase da resposta muda de uma vez para outra (é o modelo escrevendo). A trilha não muda: <code>[ferramenta ler]</code> e <code>(2 rodada(s))</code>.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "tipo": "pratica",
+      "titulo": "Prática: a sua receita",
+      "sub": "Faça na ordem.",
+      "exercicios": [
+        {
+          "id": "e1",
+          "titulo": "E1 · Rode os dois blocos",
+          "min": "5 min",
+          "texto": "Rode o bloco das receitas e o do pedido aberto.",
+          "pronto": "a saída das receitas tem três linhas <code>sem cérebro</code> e a do pedido aberto tem <code>[ferramenta ler]</code>."
+        },
+        {
+          "id": "e2",
+          "titulo": "E2 · Uma receita sua",
+          "min": "10 min",
+          "texto": "Copie <code>receitas/anotar-na-lista.txt</code> para <code>receitas/anotar-tarefa.txt</code> e troque para <code>quando: anote a tarefa *</code>, <code>faça: acrescentar tarefas.txt *</code>, <code>responda: Tarefa anotada: *</code>. Rode <code>python3 canal_terminal.py \"anote a tarefa pagar a luz\"</code>.",
+          "pronto": "a saída mostra <code>[receita anotar-tarefa.txt] sem cérebro</code> e o arquivo <code>trabalho/tarefas.txt</code> tem a linha <code>pagar a luz</code>."
+        }
+      ]
+    },
+    {
+      "tipo": "quiz",
+      "titulo": "Teste o que aprendeu",
+      "sub": "A explicação aparece depois da sua resposta.",
+      "perguntas": [
+        {
+          "p": "O pedido \"adicione café na lista\" chega. O que acontece?",
+          "opcoes": [
+            "O cérebro lê as receitas e escolhe a que serve melhor.",
+            "A receita anotar-na-lista faz o passo a passo, sem chamar o cérebro.",
+            "A caixa chama o cérebro e depois confere com a receita.",
+            "A ferramenta ler abre a lista e o cérebro acrescenta o café."
+          ],
+          "certa": 1,
+          "explica": "O pedido casa com <code>adicione * na lista</code>, então a receita faz tudo. O cérebro nem é chamado: por isso é rápido e sai igual toda vez.",
+          "ref": "s1"
+        },
+        {
+          "p": "No pedido aberto, quem abre o arquivo notas.txt?",
+          "opcoes": [
+            "O Codex, que tem acesso à sua pasta.",
+            "O canal terminal, antes de chamar a caixa.",
+            "A caixa, quando o cérebro pede a ferramenta ler.",
+            "A receita ver-a-lista, que lê qualquer arquivo."
+          ],
+          "certa": 2,
+          "explica": "O cérebro só devolve um pedido de ferramenta. Quem executa é a caixa, e o que ela leu volta para o cérebro. Por isso o Codex roda numa pasta vazia, só leitura.",
+          "ref": "s1"
+        },
+        {
+          "p": "Por que vale a pena ter receita para um pedido que o cérebro também saberia fazer?",
+          "opcoes": [
+            "Porque a receita sai igual toda vez, na hora e sem gastar o cérebro.",
+            "Porque o cérebro não consegue gravar arquivos.",
+            "Porque o Codex recusa pedidos curtos demais.",
+            "Porque a receita aprende sozinha com o tempo."
+          ],
+          "certa": 0,
+          "explica": "O pedido exato não precisa de pensamento. A receita é determinística: mesmo pedido, mesmo resultado, sem chamada ao modelo.",
+          "ref": "s2"
+        },
+        {
+          "p": "A sua receita tem <code>quando: anote a tarefa *</code>. Qual pedido cai nela?",
+          "opcoes": [
+            "Anote uma tarefa para amanhã, por favor.",
+            "Quais tarefas eu tenho?",
+            "Anote a tarefa comprar pilhas.",
+            "Tarefa: comprar pilhas."
+          ],
+          "certa": 2,
+          "explica": "O pedido tem de ser igual ao molde, com o <code>*</code> no lugar da parte que muda (maiúscula e ponto final no fim não importam). Os outros vão para o cérebro.",
+          "ref": "s2"
+        }
+      ]
+    },
+    {
+      "tipo": "resumo",
+      "titulo": "Resumo da aula",
+      "itens": [
+        {
+          "t": "Exato",
+          "texto": "Pedido que casa com uma receita: passo a passo, sem cérebro."
+        },
+        {
+          "t": "Aberto",
+          "texto": "Vai para o cérebro, que decide e pede ferramentas."
+        },
+        {
+          "t": "Quem executa",
+          "texto": "Sempre a caixa. O cérebro só pede."
+        }
+      ]
+    }
+  ]
+}
