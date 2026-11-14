@@ -22,3 +22,9 @@
 - Skill ~/.claude/skills/formato-curso-v73 (motor 7.16.23): seção fluxo (grade + setas, voltas dir/esq/baixo/cima, passos), mapa das peças no topo da aula e na inicial, validar com fluxo obrigatório, pecas e teto de 1400 palavras; resolver-kit lê o kit pela tag (git show).
 - Amostra para o Nei: página inicial + aula 6 (receitas-ferramentas). Aulas com marcadores guardadas em scratchpad/aulas-marcadores.
 - Próximo: ouvir o Nei sobre a amostra → escrever aulas 1–5, 7, 8 → imagens (Codex image_gen) → portão → revisor → push → portal/Telegram/vídeo.
+
+## Fechamento 14/11 (20:20)
+- Revisor: 7 reprovado → 8 aprovado (curso-v73). Correções nas 2 rodadas aplicadas; kit ganhou erro claro do Codex e lista vazia.
+- Publicado: curso (Pages 200), kit, portal id 393 (28fb3eb · c1f5964 · 550f5a7), INEMA.AGENTES tópico 7270 (MENU 7283).
+- Vídeo: cadeia ev-agente-por-pecas rodando (explicavideos/textos/agente-por-pecas), vigia continua registrado; a fase 2 (Metricool FTD, vídeo na aula 1, portal de vídeo, msg no tópico 7270) segue o CONTINUAR.md de lá.
+- Em aberto com o Nei: v73 na lista de versões do CLAUDE.md global; mapa pendente (sem commit) do agentes-do-zero-v72.
