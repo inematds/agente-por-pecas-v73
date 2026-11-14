@@ -19,3 +19,9 @@ Curso aberto e gratuito do INEMA.CLUB: um agente de IA montado peça por peça (
 9. ⚙️ Conferir as telas: `node ~/.claude/skills/formato-curso-v73/scripts/conferir-tela.cjs .` (1366 e 390 px).
 10. 🤖 Revisor independente (Agent novo), nota em `~/projetos/wifi/scripts/revisor-nota.py`.
 11. 🧠 Publicar: commit + push (GitHub Pages, raiz da main), depois portal (skill `atualiza-portal`), tópico no INEMA.AGENTES, vídeo com avatar e Short no lives3.
+
+## Mais no INEMA.CLUB
+
+- Ficha deste curso: https://www.inema.club/cursos/393-agente-por-pecas-monte-um-agente-que-atende-no-telegram-e-so-confere-antes-de-dizer-pronto/
+- Guia: como aprender inteligência artificial: https://www.inema.club/aprender-inteligencia-artificial/
+- Todos os cursos: https://www.inema.club/cursos/
