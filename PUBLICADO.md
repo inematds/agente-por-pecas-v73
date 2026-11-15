@@ -9,4 +9,5 @@
 - Ficha: https://www.inema.club/cursos/393-agente-por-pecas-monte-um-agente-que-atende-no-telegram-e-so-confere-antes-de-dizer-pronto/
 - Telegram INEMA.AGENTES: tópico **7270** — https://t.me/c/2433384436/7270 (MENU msg 7283)
 - Vídeo (lives3, 16:9 + Short): em produção pelo explicavideos (`~/projetos/explicavideos/textos/agente-por-pecas`)
+- short 1 (lives1): https://youtube.com/shorts/r9lyAio-Z_s
 - short 2 (lives4): https://youtube.com/shorts/IK7vBQYQ7SE
