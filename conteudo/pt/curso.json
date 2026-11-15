@@ -16,7 +16,16 @@
     "href": "https://github.com/inematds/agente-por-pecas-kit"
   },
   "rodape": "INEMA.CLUB · conteúdo aberto e gratuito · formato INEMA Learning v7.3 · <a href=\"https://inema.club/\">inema.club</a> · <a href=\"https://github.com/inematds/agente-por-pecas-kit\">kit do curso</a> · <a href=\"https://inematds.github.io/agentes-do-zero-v72/\">curso anterior: Sistema de agentes do zero</a> · <a href=\"https://www.inema.club/cursos/393-agente-por-pecas-monte-um-agente-que-atende-no-telegram-e-so-confere-antes-de-dizer-pronto/\">Ficha completa deste curso no INEMA.CLUB</a> · <a href=\"https://www.inema.club/aprender-inteligencia-artificial/\">Guia: como aprender inteligência artificial</a>",
-  "videos": {},
+  "videos": {
+    "agente-por-pecas": {
+      "titulo": "Agente por peças, em vídeo",
+      "duracao": "2 min 30 s",
+      "mp4": "https://github.com/inematds/agente-por-pecas-v73/releases/download/video-v1.0.0/agente-por-pecas.mp4",
+      "poster": "assets/img/video-poster.jpg",
+      "vtt": "assets/vtt/agente-por-pecas.vtt",
+      "pagina": "https://www.youtube.com/watch?v=pWXLBVyJd1Y"
+    }
+  },
   "inicio": {
     "kicker": "Curso · 8 aulas · uma peça por aula",
     "titulo": "Monte o seu agente peça por peça: ele atende no Telegram e só diz pronto depois de conferir",

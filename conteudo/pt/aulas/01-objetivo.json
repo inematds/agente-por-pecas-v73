@@ -214,6 +214,12 @@
       }
     },
     {
+      "tipo": "video",
+      "titulo": "O curso em vídeo",
+      "sub": "Em dois minutos e meio: por que um agente de verdade só diz pronto depois de conferir, as peças que ele tem e o juiz que cancela depois de 3 tentativas.",
+      "chave": "agente-por-pecas"
+    },
+    {
       "tipo": "pratica",
       "titulo": "Prática: o objetivo do seu agente",
       "sub": "Faça na ordem.",
