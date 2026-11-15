@@ -8,6 +8,6 @@
 - Portal (inema.club, id 393): portal 28fb3eb · inemabuscas c1f5964 · inemapro 550f5a7; trilha 🤖 Agentes Jarvis
 - Ficha: https://www.inema.club/cursos/393-agente-por-pecas-monte-um-agente-que-atende-no-telegram-e-so-confere-antes-de-dizer-pronto/
 - Telegram INEMA.AGENTES: tópico **7270** — https://t.me/c/2433384436/7270 (MENU msg 7283)
-- Vídeo (lives3, 16:9 + Short): em produção pelo explicavideos (`~/projetos/explicavideos/textos/agente-por-pecas`)
+- Vídeo 16:9 (lives3, 2 min 30 s): https://www.youtube.com/watch?v=pWXLBVyJd1Y · na aula 1 (eb82a17, release video-v1.0.0) · portal 44e3001 · guia do kit 4d7a1b0 · Metricool FTD 14/11 23:15 · Telegram tópico 7270
 - short 1 (lives1): https://youtube.com/shorts/r9lyAio-Z_s
 - short 2 (lives4): https://youtube.com/shorts/IK7vBQYQ7SE
