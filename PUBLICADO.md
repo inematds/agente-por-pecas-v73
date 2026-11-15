@@ -11,3 +11,4 @@
 - Vídeo 16:9 (lives3, 2 min 30 s): https://www.youtube.com/watch?v=pWXLBVyJd1Y · na aula 1 (eb82a17, release video-v1.0.0) · portal 44e3001 · guia do kit 4d7a1b0 · Metricool FTD 14/11 23:15 · Telegram tópico 7270
 - short 1 (lives1): https://youtube.com/shorts/r9lyAio-Z_s
 - short 2 (lives4): https://youtube.com/shorts/IK7vBQYQ7SE
+- short 3 (lives8): https://youtube.com/shorts/Pbwsf091yIU
